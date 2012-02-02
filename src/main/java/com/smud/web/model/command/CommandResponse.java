@@ -18,4 +18,9 @@ public class CommandResponse {
 	public void addResponse(String response) {
 		this.responses.add(response);
 	}
+
+	@Override
+	public String toString() {
+		return "CommandResponse [responses=" + responses + "]";
+	}
 }

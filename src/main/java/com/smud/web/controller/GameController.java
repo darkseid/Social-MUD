@@ -25,7 +25,8 @@ public class GameController {
 	
 	@RequestMapping("command.do")
 	public @ResponseBody CommandResponse command(@RequestParam(value="command") String command) {
-		return commandsService.parseCommand(command);
+		CommandResponse commandResponse = commandsService.parseCommand(command);
+		return commandResponse;
 	}
 	
 	public void setCommandsService(CommandsService commandsService) {
