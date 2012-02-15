@@ -29,15 +29,16 @@ public class GameControllerTest extends TestCase {
 	private DispatcherServlet servlet;
 	
 	@Test
-	public void viewTest() throws ServletException, IOException {
+	public void testLookCommandWithoutArgs() throws ServletException, IOException {
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/command.do");
+		
 		request.addParameter("command", "look");
 		MockHttpServletResponse response = new MockHttpServletResponse();
 
 		servlet.service(request, response);
 		String results = response.getContentAsString().trim();
 
-		Assert.assertEquals("<html><body>Hello World!</body></html>", results);
+		Assert.assertEquals("{\"responses\":[\"LookCommand executed\"]}", results);
 	}
 
 }
