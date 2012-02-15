@@ -1,5 +1,6 @@
-package com.smud.web.controller.service;
+package com.smud.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.smud.web.model.command.Command;
@@ -11,9 +12,13 @@ public class DefaultCommandsService implements CommandsService {
 	
 	@Override
 	public CommandResponse parseCommand(String inputCommand) {
+		
+		// TODO parse the input command to get the command itself and the parameters
+		HashMap<String, String> parameters = new HashMap<String, String>();
+		
 		Command command = commands.get(inputCommand);
 		if (command != null) {
-			return command.execute();
+			return command.execute(parameters);
 		} else {
 			return null;
 		}

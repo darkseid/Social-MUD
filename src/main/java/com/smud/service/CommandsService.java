@@ -1,4 +1,4 @@
-package com.smud.web.controller.service;
+package com.smud.service;
 
 import com.smud.web.model.command.CommandResponse;
 

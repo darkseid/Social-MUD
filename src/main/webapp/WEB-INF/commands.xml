@@ -9,7 +9,7 @@
 	
 	<bean id="lookCommand" class="com.smud.web.model.command.LookCommand"/>
 		
-	<bean id="commandsService" class="com.smud.web.controller.service.DefaultCommandsService">
+	<bean id="commandsService" class="com.smud.service.DefaultCommandsService">
 		<property name="commands">
 			<map>
 				<entry key="look" value-ref="lookCommand"/>
@@ -17,5 +17,9 @@
 		</property>
 	</bean>
 	
+	<bean id="mockRoom"	class="com.smud.model.Room">
+		<property name="title" value="mock room"/>
+		<property name="description" value="mock"/>
+	</bean>
 		
 </beans>

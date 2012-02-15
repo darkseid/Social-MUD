@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smud.web.controller.service.CommandsService;
+import com.smud.service.CommandsService;
 import com.smud.web.model.command.CommandResponse;
 
 @Controller

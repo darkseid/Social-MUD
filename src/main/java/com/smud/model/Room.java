@@ -1,9 +1,8 @@
-package com.smud.web.model.world;
+package com.smud.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.smud.web.model.character.Player;
 
 public class Room {
 
@@ -11,6 +10,7 @@ public class Room {
 	
 	private String description;
 	
+	// TODO change for a concurrent collection 
 	private List<Player> players = new ArrayList<Player>();
 
 	public String getTitle() {
@@ -41,6 +41,11 @@ public class Room {
 		players.remove(player);
 	}
 	
+	public void broadcast(String msg) {
+		for (Player player : players) {
+			player.addMessage(msg);
+		}
+	}
 	
 	
 }
