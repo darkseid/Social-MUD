@@ -12,6 +12,7 @@ import com.smud.service.CommandsService;
 import com.smud.web.model.command.CommandResponse;
 
 @Controller
+@RequestMapping("/game/")
 public class GameController {
 
 	@Autowired
