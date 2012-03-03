@@ -5,17 +5,17 @@ import java.util.List;
 
 public class CommandResponse {
 
-	private List<String> responses = new ArrayList<String>();
+	private List<Response> responses = new ArrayList<Response>();
 	
-	public void setResponses(List<String> responses) {
+	public void setResponses(List<Response> responses) {
 		this.responses = responses;
 	}
 	
-	public List<String> getResponses() {
+	public List<Response> getResponses() {
 		return responses;
 	}
 	
-	public void addResponse(String response) {
+	public void addResponse(Response response) {
 		this.responses.add(response);
 	}
 
