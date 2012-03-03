@@ -15,7 +15,7 @@ var SMUD = SMUD || {};
 			complete : function(data) {
 				//print results as appended 
 				var response = $.parseJSON(data.responseText);
-				$("#board").append(response.responses[0]).append("<br/>");
+				$("#board").append(response.responses[0].text).append("<br/>");
 			}
 		});
 	};

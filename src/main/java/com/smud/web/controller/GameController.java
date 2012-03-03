@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.smud.model.Player;
 import com.smud.service.CommandsService;
 import com.smud.web.model.command.CommandResponse;
 
@@ -25,8 +26,9 @@ public class GameController {
 	}
 	
 	@RequestMapping("command.do")
-	public @ResponseBody CommandResponse command(@RequestParam(value="command") String command) {
-		CommandResponse commandResponse = commandsService.parseCommand(command);
+	public @ResponseBody CommandResponse command(HttpServletRequest request, @RequestParam(value="command") String command) {
+		Player player = (Player) request.getSession().getAttribute("authenticated_user");
+		CommandResponse commandResponse = commandsService.parseCommand(player, command);
 		return commandResponse;
 	}
 	
