@@ -16,7 +16,7 @@ var SMUD = SMUD || {};
 				//print results as appended 
 				var response = $.parseJSON(data.responseText);
 				for (var i = 0; i < response.responses.length; i++) {
-					$("#board").append(response.responses[i].text).append("<br/>");
+					$("#board").append("<span class=" + response.responses[i].color + ">" + response.responses[i].text + "</span>").append("<br/>");
 				}
 			}
 		});
