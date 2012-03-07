@@ -1,7 +1,5 @@
 package com.smud.web.model.command;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.smud.model.Player;
@@ -15,7 +13,7 @@ public class LookCommand implements Command {
 	private RoomService roomService;
 
 	@Override
-	public CommandResponse execute(Player player, Map<String, String> parameters) {
+	public CommandResponse execute(Player player, String parameters) {
 		Room room = player.getInRoom();
 		CommandResponse commandResponse = new CommandResponse();
 		commandResponse.addResponse(new Response(room.getTitle(), Color.CYAN));

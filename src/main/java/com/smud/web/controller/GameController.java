@@ -27,8 +27,12 @@ public class GameController {
 	
 	@RequestMapping("command.do")
 	public @ResponseBody CommandResponse command(HttpServletRequest request, @RequestParam(value="command") String command) {
+		System.out.println("Aqui");
 		Player player = (Player) request.getSession().getAttribute("authenticated_user");
 		CommandResponse commandResponse = commandsService.parseCommand(player, command);
+		
+		System.out.println(commandResponse);
+		
 		return commandResponse;
 	}
 	
