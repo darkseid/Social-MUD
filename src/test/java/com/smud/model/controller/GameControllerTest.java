@@ -1,9 +1,5 @@
 package com.smud.model.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-
 import junit.framework.TestCase;
 
 import org.junit.Assert;
@@ -31,7 +27,7 @@ public class GameControllerTest extends TestCase {
 	private DispatcherServlet servlet;
 	
 	@Test
-	public void testLookCommandWithoutArgs() throws ServletException, IOException {
+	public void testLookCommandWithoutArgs() throws Exception {
 		
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/game/command.do");
 		
@@ -54,5 +50,4 @@ public class GameControllerTest extends TestCase {
 
 		Assert.assertEquals("{\"responses\":[\"LookCommand executed\"]}", results);
 	}
-
 }

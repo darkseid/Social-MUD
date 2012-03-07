@@ -1,34 +1,40 @@
 package com.smud.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Room {
 
-	private String title;
+	private int id;
 	
-	private String description;
+	private Map<Direction, Room> roomExits = new HashMap<Direction, Room>();
 	
 	// TODO change for a concurrent collection 
 	private List<Player> players = new ArrayList<Player>();
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public int getId() {
+		return id;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Map<Direction, Room> getRoomExits() {
+		return roomExits;
+	}
+	
+	public void setRoomExits(Map<Direction, Room> roomExits) {
+		this.roomExits = roomExits;
+	}
+	
+	public Room getRoomExit(Direction direction){
+		return roomExits.get(direction);
+	}
+
 	public List<Player> getPlayers() {
 		return players;
 	}
