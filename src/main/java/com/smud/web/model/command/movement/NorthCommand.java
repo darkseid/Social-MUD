@@ -1,7 +1,5 @@
 package com.smud.web.model.command.movement;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.smud.model.Direction;
@@ -19,7 +17,7 @@ public class NorthCommand implements Command {
 	private LookCommand lookCommand;
 	
 	@Override
-	public CommandResponse execute(Player player, Map<String, String> parameters) {
+	public CommandResponse execute(Player player, String parameters) {
 		Room room = player.getInRoom();
 		Room northRoom = room.getRoomExit(Direction.NORTH);
 		

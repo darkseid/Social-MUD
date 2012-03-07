@@ -1,6 +1,5 @@
 package com.smud.web.model.command;
 
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -21,7 +20,7 @@ public class LookCommand implements Command {
 	private Properties roomsProperties;
 	
 	@Override
-	public CommandResponse execute(Player player, Map<String, String> parameters) {
+	public CommandResponse execute(Player player, String parameters) {
 		Room room = player.getInRoom();
 		CommandResponse commandResponse = new CommandResponse();
 		commandResponse.addResponse(new Response(roomsProperties.getProperty("room." + room.getId() + ".title"), Color.CYAN));
