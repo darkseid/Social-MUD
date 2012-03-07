@@ -16,6 +16,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import com.smud.model.Player;
+import com.smud.model.Room;
 import com.smud.web.MockWebApplication;
 import com.smud.web.MockWebApplicationContextLoader;
 
@@ -30,11 +32,23 @@ public class GameControllerTest extends TestCase {
 	
 	@Test
 	public void testLookCommandWithoutArgs() throws ServletException, IOException {
-		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/command.do");
+		
+		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/game/command.do");
+		
+		Room room = new Room();
+		
+		Player player = new Player();
+		player.setId(1);
+		player.setName("mock");
+		player.setInRoom(room);
+		
+		
+		
+		request.getSession().setAttribute("authenticated_user", player);
 		
 		request.addParameter("command", "look");
+		
 		MockHttpServletResponse response = new MockHttpServletResponse();
-
 		servlet.service(request, response);
 		String results = response.getContentAsString().trim();
 
