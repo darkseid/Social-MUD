@@ -2,6 +2,8 @@ package com.smud.web.model.command;
 
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.smud.web.model.Color;
@@ -56,5 +58,28 @@ public class Response {
 		.append("color", color)
 		.append("arguments", arguments)
 		.build();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean isEquals = false;
+		if (obj instanceof Response) {
+			Response other = (Response) obj;
+			isEquals = new EqualsBuilder()
+			.append(text, other.text)
+			.append(color, other.color)
+			.append(arguments, other.arguments)
+			.isEquals();
+		}
+		return isEquals;
+	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+		.append(text)
+		.append(color)
+		.append(arguments)
+		.toHashCode();
 	}
 }
