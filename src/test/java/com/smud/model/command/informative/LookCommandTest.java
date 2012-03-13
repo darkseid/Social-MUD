@@ -43,6 +43,11 @@ public class LookCommandTest {
 		Player player = new Player();
 		player.setInRoom(room);
 		
+		Player otherPlayer = new Player();
+		otherPlayer.setName("Mock");
+		otherPlayer.setTitle("Title");
+		otherPlayer.setInRoom(room);
+		
 		Properties roomsProperties = new Properties();
 		roomsProperties.put("room."+ ROOM_ID + ".title", ROOM_TITLE);
 		roomsProperties.put("room."+ ROOM_ID + ".description", ROOM_DESCRIPTION);
@@ -52,6 +57,7 @@ public class LookCommandTest {
 		expectedResult.addResponse(new Response(ROOM_TITLE, Color.CYAN));
 		expectedResult.addResponse(new Response(ROOM_DESCRIPTION, Color.WHITE));
 		expectedResult.addResponse(new Response("[ s ]", Color.DARK_GREEN));
+		expectedResult.addResponse(new Response("Mock Title is here.", Color.DARK_YELLOW));
 		
 		CommandResponse result = this.command.execute(player, null);
 		Assert.assertEquals(expectedResult, result);

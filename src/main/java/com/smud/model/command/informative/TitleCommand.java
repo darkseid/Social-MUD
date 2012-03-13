@@ -14,6 +14,7 @@ public class TitleCommand implements Command {
 	public CommandResponse execute(Player player, String parameters) {
 		player.setTitle(parameters);
 		CommandResponse commandResponse = new CommandResponse();
+		//TODO change for property key
 		String responseText = MessageFormat.format("You are now {0} {1}", player.getName(), player.getTitle());
 		commandResponse.addResponse(new Response(responseText, Color.WHITE));
 		return commandResponse;
