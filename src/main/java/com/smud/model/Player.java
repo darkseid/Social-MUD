@@ -3,6 +3,9 @@ package com.smud.model;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 
 public class Player {
 
@@ -51,5 +54,26 @@ public class Player {
 		}
 		
 		return messages.poll();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean equals = false;
+		if (obj instanceof Player) {
+			Player other = (Player) obj;
+			equals = new EqualsBuilder()
+			.append(this.id, other.id)
+			.append(this.name, other.name)
+			.isEquals();
+		}
+		return equals;
+	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+		.append(id)
+		.append(name)
+		.toHashCode();
 	}
 }
