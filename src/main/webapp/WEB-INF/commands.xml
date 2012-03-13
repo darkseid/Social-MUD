@@ -10,15 +10,19 @@
 	<bean id="lookCommand" class="com.smud.web.model.command.LookCommand"/>
 	
 	<!-- Movement -->
+	<bean id="eastCommand" class="com.smud.web.model.command.movement.EastCommand"/>
 	<bean id="northCommand" class="com.smud.web.model.command.movement.NorthCommand"/>
 	<bean id="southCommand" class="com.smud.web.model.command.movement.SouthCommand"/>
+	<bean id="westCommand" class="com.smud.web.model.command.movement.WestCommand"/>
 		
 	<bean id="commandsService" class="com.smud.service.DefaultCommandsService">
 		<property name="commands">
 			<map>
+				<entry key="east" value-ref="eastCommand"/>
 				<entry key="look" value-ref="lookCommand"/>
 				<entry key="north" value-ref="northCommand"/>
 				<entry key="south" value-ref="southCommand"/>
+				<entry key="west" value-ref="westCommand"/>
 			</map>
 		</property>
 	</bean>

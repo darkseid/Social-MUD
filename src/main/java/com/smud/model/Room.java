@@ -52,6 +52,10 @@ public class Room {
 			player.addMessage(msg);
 		}
 	}
+
+	public void addRoomExit(Direction direction, Room destinationRoom) {
+		roomExits.put(direction, destinationRoom);
+	}
 	
 	
 }
