@@ -17,6 +17,7 @@ var SMUD = SMUD || {};
 				var response = $.parseJSON(data.responseText);
 				for (var i = 0; i < response.responses.length; i++) {
 					$("#board").append("<span class=" + response.responses[i].color + ">" + response.responses[i].text + "</span>").append("<br/>");
+					$("#board").scrollTop($("#board")[0].scrollHeight);
 				}
 			}
 		});
