@@ -1,7 +1,7 @@
 package com.smud.service;
 
 import com.smud.model.Player;
-import com.smud.web.model.command.CommandResponse;
+import com.smud.model.command.CommandResponse;
 
 public interface CommandsService {
 

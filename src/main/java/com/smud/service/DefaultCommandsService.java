@@ -5,8 +5,8 @@ import java.util.Map;
 
 import com.smud.model.Input;
 import com.smud.model.Player;
-import com.smud.web.model.command.Command;
-import com.smud.web.model.command.CommandResponse;
+import com.smud.model.command.Command;
+import com.smud.model.command.CommandResponse;
 
 public class DefaultCommandsService implements CommandsService {
 

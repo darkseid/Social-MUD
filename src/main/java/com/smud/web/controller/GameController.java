@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smud.model.Player;
+import com.smud.model.command.CommandResponse;
 import com.smud.service.CommandsService;
-import com.smud.web.model.command.CommandResponse;
 
 @Controller
 @RequestMapping("/game/")
