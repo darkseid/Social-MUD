@@ -19,14 +19,17 @@
 		
 	<bean id="commandsService" class="com.smud.service.DefaultCommandsService">
 		<property name="commands">
-			<map>
-				<entry key="east" value-ref="eastCommand"/>
-				<entry key="look" value-ref="lookCommand"/>
-				<entry key="north" value-ref="northCommand"/>
-				<entry key="south" value-ref="southCommand"/>
-				<entry key="title" value-ref="titleCommand"/>
-				<entry key="west" value-ref="westCommand"/>
-			</map>
+			<list>
+				<!-- Movement commands come first -->
+				<ref bean="eastCommand"/>
+				<ref bean="northCommand"/>
+				<ref bean="southCommand"/>
+				<ref bean="westCommand"/>
+				
+				<!-- Other commands alphabetically ordered -->
+				<ref bean="lookCommand"/>
+				<ref bean="titleCommand"/>
+			</list>
 		</property>
 	</bean>
 		
