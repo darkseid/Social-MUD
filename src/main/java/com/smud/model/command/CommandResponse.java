@@ -1,4 +1,4 @@
-package com.smud.web.model.command;
+package com.smud.model.command;
 
 import java.util.ArrayList;
 import java.util.List;

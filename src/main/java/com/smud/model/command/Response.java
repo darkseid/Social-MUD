@@ -1,4 +1,4 @@
-package com.smud.web.model.command;
+package com.smud.model.command;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.smud.web.model.Color;
+import com.smud.model.Color;
 
 public class Response {
 

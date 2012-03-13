@@ -1,4 +1,4 @@
-package com.smud.web.model.command.movement;
+package com.smud.model.command.movement;
 
 import junit.framework.Assert;
 
@@ -6,13 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.smud.model.Color;
 import com.smud.model.Direction;
 import com.smud.model.Player;
 import com.smud.model.Room;
-import com.smud.web.model.Color;
-import com.smud.web.model.command.CommandResponse;
-import com.smud.web.model.command.LookCommand;
-import com.smud.web.model.command.Response;
+import com.smud.model.command.CommandResponse;
+import com.smud.model.command.Response;
+import com.smud.model.command.informative.LookCommand;
+import com.smud.model.command.movement.MovementCommand;
+import com.smud.model.command.movement.NorthCommand;
 
 public class MovementCommandTest {
 

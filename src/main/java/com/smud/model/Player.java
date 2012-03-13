@@ -11,6 +11,7 @@ public class Player {
 
 	private int id;
 	private String name;
+	private String title;
 	private Room inRoom;
 	private Queue<String> messages;
 
@@ -28,6 +29,14 @@ public class Player {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getTitle() {
+		return title;
 	}
 
 	public Room getInRoom() {
@@ -64,6 +73,7 @@ public class Player {
 			equals = new EqualsBuilder()
 			.append(this.id, other.id)
 			.append(this.name, other.name)
+			.append(this.title, other.title)
 			.isEquals();
 		}
 		return equals;
@@ -74,6 +84,7 @@ public class Player {
 		return new HashCodeBuilder()
 		.append(id)
 		.append(name)
+		.append(title)
 		.toHashCode();
 	}
 }

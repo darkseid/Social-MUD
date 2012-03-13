@@ -1,4 +1,4 @@
-package com.smud.web.model.command.movement;
+package com.smud.model.command.movement;
 
 import com.smud.model.Direction;
 import com.smud.model.Player;
