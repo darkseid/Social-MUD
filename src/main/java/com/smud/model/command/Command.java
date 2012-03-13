@@ -1,4 +1,4 @@
-package com.smud.web.model.command;
+package com.smud.model.command;
 
 import com.smud.model.Player;
 

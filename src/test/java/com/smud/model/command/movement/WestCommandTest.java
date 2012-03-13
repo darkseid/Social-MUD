@@ -1,4 +1,4 @@
-package com.smud.web.model.command.movement;
+package com.smud.model.command.movement;
 
 import junit.framework.Assert;
 
@@ -8,14 +8,15 @@ import org.junit.Test;
 import com.smud.model.Direction;
 import com.smud.model.Player;
 import com.smud.model.Room;
+import com.smud.model.command.movement.WestCommand;
 
-public class NorthCommandTest {
+public class WestCommandTest {
 
-	private NorthCommand command;
+	private WestCommand command;
 	
 	@Before
 	public void setUp() {
-		this.command = new NorthCommand();
+		this.command = new WestCommand();
 	}
 	
 	@Test
@@ -25,7 +26,7 @@ public class NorthCommandTest {
 		
 		Room sourceRoom = new Room();
 		sourceRoom.setId(1);
-		sourceRoom.addRoomExit(Direction.NORTH, destinationRoom);
+		sourceRoom.addRoomExit(Direction.WEST, destinationRoom);
 		
 		Player player = new Player();
 		player.setInRoom(sourceRoom);
