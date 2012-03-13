@@ -10,6 +10,8 @@ import com.smud.model.command.Response;
 
 public class TitleCommand implements Command {
 
+	private static final String COMMAND_NAME = "title";
+	
 	@Override
 	public CommandResponse execute(Player player, String parameters) {
 		player.setTitle(parameters);
@@ -18,6 +20,11 @@ public class TitleCommand implements Command {
 		String responseText = MessageFormat.format("You are now {0} {1}", player.getName(), player.getTitle());
 		commandResponse.addResponse(new Response(responseText, Color.WHITE));
 		return commandResponse;
+	}
+	
+	@Override
+	public String getCommandName() {
+		return COMMAND_NAME;
 	}
 
 }

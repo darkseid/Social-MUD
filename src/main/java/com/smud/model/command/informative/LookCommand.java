@@ -17,6 +17,7 @@ import com.smud.model.command.Response;
 
 public class LookCommand implements Command {
 	
+	private static final String COMMAND_NAME = "look";
 	private static final String ROOM_EXITS_LEFT_BRACKET = "[ ";
 	private static final String ROOM_EXITS_RIGHT_BRACKET = "]";
 	private static final String DIRECTION_SEPARATOR = " ";
@@ -40,6 +41,11 @@ public class LookCommand implements Command {
 			}
 		}
 		return commandResponse;
+	}
+	
+	@Override
+	public String getCommandName() {
+		return COMMAND_NAME;
 	}
 
 	public void setRoomsProperties(Properties roomsProperties) {
