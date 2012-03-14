@@ -47,15 +47,22 @@ public class Room {
 		players.remove(player);
 	}
 	
-	public void broadcast(String msg) {
-		for (Player player : players) {
-			player.addMessage(msg);
-		}
-	}
-
 	public void addRoomExit(Direction direction, Room destinationRoom) {
 		roomExits.put(direction, destinationRoom);
 	}
 	
+	public void broadcast(String message) {
+		for (Player player : players) {
+			player.addMessage(message);
+		}
+	}
+
+	public void sendToOtherPlayers(String message, Player player) {
+		for (Player playerInRoom : players) {
+			if (!playerInRoom.equals(player)){
+				playerInRoom.addMessage(message);
+			}
+		}
+	}
 	
 }
