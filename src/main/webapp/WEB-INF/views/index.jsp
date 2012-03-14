@@ -6,7 +6,7 @@
 <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
 
 </head>
-<body>
+<body onload="SMUD.retrieveMessages()">
 
 	<div class="journalbox" id="board">
 

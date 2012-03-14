@@ -11,6 +11,14 @@
 	<bean id="mockPlayer" class="com.smud.model.Player">
 		<property name="id" value="1"/>
 		<property name="name" value="mock"/>
+		<property name="title" value="title" />
+		<property name="inRoom" ref="room3001"/>
+	</bean>
+	
+	<bean id="mockPlayer2" class="com.smud.model.Player">
+		<property name="id" value="2"/>
+		<property name="name" value="mock2"/>
+		<property name="title" value="title" />
 		<property name="inRoom" ref="room3001"/>
 	</bean>
 	

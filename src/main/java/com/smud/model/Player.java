@@ -3,11 +3,15 @@ package com.smud.model;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 
 public class Player {
 
 	private int id;
 	private String name;
+	private String title;
 	private Room inRoom;
 	private Queue<String> messages;
 
@@ -25,6 +29,14 @@ public class Player {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getTitle() {
+		return title;
 	}
 
 	public Room getInRoom() {
@@ -51,5 +63,28 @@ public class Player {
 		}
 		
 		return messages.poll();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean equals = false;
+		if (obj instanceof Player) {
+			Player other = (Player) obj;
+			equals = new EqualsBuilder()
+			.append(this.id, other.id)
+			.append(this.name, other.name)
+			.append(this.title, other.title)
+			.isEquals();
+		}
+		return equals;
+	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+		.append(id)
+		.append(name)
+		.append(title)
+		.toHashCode();
 	}
 }

@@ -3,6 +3,9 @@
     border-width:6px;
     border-color:#ccd9d8;
     background-color:#080808;
+    overflow: auto;
+    height: 90%;
+	width: 98s%;
     color:#5fba3d;
     font-family:monospace, prestige;
 }
@@ -79,6 +82,10 @@ li{
 
 .DARK_GREEN {
 	color: #228b22;
+}
+
+.DARK_YELLOW {
+	color: #daa520;
 }
 
 .RED {

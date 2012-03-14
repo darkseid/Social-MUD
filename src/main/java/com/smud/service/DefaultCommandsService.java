@@ -1,38 +1,35 @@
 package com.smud.service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.smud.model.Input;
 import com.smud.model.Player;
-import com.smud.web.model.command.Command;
-import com.smud.web.model.command.CommandResponse;
+import com.smud.model.command.Command;
+import com.smud.model.command.CommandResponse;
 
 public class DefaultCommandsService implements CommandsService {
 
-	private Map<String, Command> commands;
+	private List<Command> commands = new ArrayList<Command>();
 	
 	@Override
 	public CommandResponse parseCommand(Player player, String input) {
 		
-		// TODO parse the input command to get the command itself and the parameters
-		HashMap<String, String> parameters = new HashMap<String, String>();
-		
 		Input commandInput = extractCommandAndParameters(input);
 		
-		Command command = commands.get(commandInput.getCommandName());
-		if (command != null) {
-			return command.execute(player, commandInput.getParameters());
-		} else {
-			return null;
+		for (Command command : commands) {
+			if (command.getCommandName().toLowerCase().startsWith(commandInput.getCommandName().toLowerCase())){
+				return command.execute(player, commandInput.getParameters());
+			}
 		}
+		return null;
 	}
 	
 	private Input extractCommandAndParameters(String inputCommand) {
 		return Input.create(inputCommand);
 	}
 
-	public void setCommands(Map<String, Command> commands) {
+	public void setCommands(List<Command> commands) {
 		this.commands = commands;
 	}
 

@@ -17,13 +17,26 @@ var SMUD = SMUD || {};
 				var response = $.parseJSON(data.responseText);
 				for (var i = 0; i < response.responses.length; i++) {
 					$("#board").append("<span class=" + response.responses[i].color + ">" + response.responses[i].text + "</span>").append("<br/>");
+					$("#board").scrollTop($("#board")[0].scrollHeight);
 				}
 			}
 		});
 	};
 
-	console.log('passou');
+	SMUD.retrieveMessages = function() {
+		$.ajax({
+			type : "GET",
+			url : 'retrieveMessages.do',
+			complete : function(data) {
+				//print results as appended 
+				var response = $.parseJSON(data.responseText);
+				for (var i = 0; i < response.responses.length; i++) {
+					$("#board").append("<span class=" + response.responses[i].color + ">" + response.responses[i].text + "</span>").append("<br/>");
+					$("#board").scrollTop($("#board")[0].scrollHeight);
+				}
+				setTimeout("SMUD.retrieveMessages()",1000);
+			}
+		});
+	};
 
 }());
-
-console.log("passou tb" );

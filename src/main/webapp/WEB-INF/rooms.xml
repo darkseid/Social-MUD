@@ -8,11 +8,22 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	<!-- Rooms -->
+	<bean id="room3000"	class="com.smud.model.Room">
+		<property name="id" value="3000"/>
+		<property name="roomExits">
+			<map>
+				<entry key="EAST" value-ref="room3001"/>
+			</map>
+		</property>
+	</bean>
+	
 	<bean id="room3001"	class="com.smud.model.Room">
 		<property name="id" value="3001"/>
 		<property name="roomExits">
 			<map>
+				<entry key="EAST" value-ref="room3063"/>		
 				<entry key="SOUTH" value-ref="room3005"/>
+				<entry key="WEST" value-ref="room3000"/>
 			</map>
 		</property>
 	</bean>
@@ -22,6 +33,15 @@
 		<property name="roomExits">
 			<map>
 				<entry key="NORTH" value-ref="room3001"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="room3063"	class="com.smud.model.Room">
+		<property name="id" value="3063"/>
+		<property name="roomExits">
+			<map>
+				<entry key="WEST" value-ref="room3001"/>
 			</map>
 		</property>
 	</bean>
