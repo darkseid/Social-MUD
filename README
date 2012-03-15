@@ -1,1 +1,12 @@
 TODO - TO
+
+INSTALL REDIS:
+http://redis.googlecode.com/files/redis-2.4.8.tar.gz
+
+tar -zxvf redis-2.4.8.tar.gz 
+
+cd redis-2.4.8
+make
+sudo make install
+
+TO RUN the server: redis-server.
