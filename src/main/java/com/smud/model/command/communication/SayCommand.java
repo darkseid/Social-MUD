@@ -19,7 +19,7 @@ public class SayCommand implements Command {
 		//TODO change for property key
 		String messageToPlayer = MessageFormat.format("You say: {0}", parameters);
 		String messageToOthers = MessageFormat.format("{0} says: {1}", player.getName(), parameters);
-		room.sendToOtherPlayers(messageToOthers, player);
+		room.sendToOtherPlayers(new Response(messageToOthers, Color.WHITE), player);
 		
 		CommandResponse commandResponse = new CommandResponse();
 		commandResponse.addResponse(new Response(messageToPlayer, Color.WHITE));

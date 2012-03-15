@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smud.model.Color;
 import com.smud.model.Player;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
@@ -40,11 +39,11 @@ public class GameController {
 	public @ResponseBody CommandResponse retrieveMessage(HttpServletRequest request) {
 		Player player = (Player) request.getSession().getAttribute("authenticated_user");
 		CommandResponse commandResponse = new CommandResponse();
-		String message = player.getMessage();
+		Response response = player.getResponse();
 		//TODO add a time limit to consuming the queue
-		while (message != null) {
-			commandResponse.addResponse(new Response(message, Color.WHITE));
-			message = player.getMessage();
+		while (response != null) {
+			commandResponse.addResponse(response);
+			response = player.getResponse();
 		}
 		return commandResponse;
 	}

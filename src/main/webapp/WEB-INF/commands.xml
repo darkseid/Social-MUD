@@ -9,6 +9,7 @@
 		
 	<!-- Communication -->
 	<bean id="sayCommand" class="com.smud.model.command.communication.SayCommand"/>
+	<bean id="shoutCommand" class="com.smud.model.command.communication.ShoutCommand"/>
 	
 	<!-- Informative -->
 	<bean id="lookCommand" class="com.smud.model.command.informative.LookCommand"/>
@@ -32,6 +33,7 @@
 				<!-- Other commands alphabetically ordered -->
 				<ref bean="lookCommand"/>
 				<ref bean="sayCommand"/>
+				<ref bean="shoutCommand"/>
 				<ref bean="titleCommand"/>
 			</list>
 		</property>

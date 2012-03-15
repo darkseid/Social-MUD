@@ -6,6 +6,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.smud.model.command.Response;
+
 
 public class Player {
 
@@ -13,7 +15,7 @@ public class Player {
 	private String name;
 	private String title;
 	private Room inRoom;
-	private Queue<String> messages;
+	private Queue<Response> responses;
 
 	public int getId() {
 		return id;
@@ -48,21 +50,21 @@ public class Player {
 		inRoom.addPlayer(this);
 	}
 	
-	public void addMessage(String message) {
+	public void addResponse(Response response) {
 		synchronized (this) {
-			if (messages == null) {
-				messages = new LinkedBlockingQueue<String>();
+			if (responses == null) {
+				responses = new LinkedBlockingQueue<Response>();
 			} 
 		}
-		messages.add(message);
+		responses.add(response);
 	}
 	
-	public String getMessage() {
-		if (messages == null) {
+	public Response getResponse() {
+		if (responses == null) {
 			return null;
 		}
 		
-		return messages.poll();
+		return responses.poll();
 	}
 	
 	@Override

@@ -28,6 +28,7 @@
 	<import resource="beans.xml"/>
 	<import resource="commands.xml"/>
 	<import resource="mock.xml"/>
+	<import resource="zones.xml"/>
 	<import resource="rooms.xml"/>
 
 	<!-- Saves a locale change using a cookie -->

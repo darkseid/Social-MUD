@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.smud.model.command.Response;
+
 
 public class Room {
 
 	private int id;
+	
+	private Zone zone;
 	
 	private Map<Direction, Room> roomExits = new HashMap<Direction, Room>();
 	
@@ -21,6 +25,14 @@ public class Room {
 	
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public Zone getZone() {
+		return zone;
+	}
+
+	public void setZone(Zone zone) {
+		this.zone = zone;
 	}
 
 	public Map<Direction, Room> getRoomExits() {
@@ -51,16 +63,16 @@ public class Room {
 		roomExits.put(direction, destinationRoom);
 	}
 	
-	public void broadcast(String message) {
+	public void broadcast(Response response) {
 		for (Player player : players) {
-			player.addMessage(message);
+			player.addResponse(response);
 		}
 	}
 
-	public void sendToOtherPlayers(String message, Player player) {
+	public void sendToOtherPlayers(Response response, Player player) {
 		for (Player playerInRoom : players) {
 			if (!playerInRoom.equals(player)){
-				playerInRoom.addMessage(message);
+				playerInRoom.addResponse(response);
 			}
 		}
 	}

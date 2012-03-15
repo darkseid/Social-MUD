@@ -3,6 +3,7 @@ package com.smud.model.command;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import com.smud.model.Color;
 import com.smud.model.Player;
 import com.smud.model.Room;
 
@@ -19,9 +20,9 @@ public class RoomTest extends TestCase {
 		p1.setInRoom(room);
 		p2.setInRoom(room);
 		
-		room.broadcast("Teste");
+		room.broadcast(new Response("Teste", Color.WHITE));
 		
-		Assert.assertEquals("Teste", p1.getMessage());
-		Assert.assertEquals("Teste", p2.getMessage());
+		Assert.assertEquals(new Response("Teste", Color.WHITE), p1.getResponse());
+		Assert.assertEquals(new Response("Teste", Color.WHITE), p2.getResponse());
 	}
 }
