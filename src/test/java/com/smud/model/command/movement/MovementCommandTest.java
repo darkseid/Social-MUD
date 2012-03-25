@@ -57,7 +57,7 @@ public class MovementCommandTest {
 		
 		command.execute(player, null);
 		
-		Assert.assertEquals(0, sourceRoom.getCharacters().size());
+		Assert.assertEquals(0, sourceRoom.getPlayers().size());
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class MovementCommandTest {
 		
 		command.execute(player, null);
 		
-		Assert.assertEquals(1, destinationRoom.getCharacters().size());
+		Assert.assertEquals(1, destinationRoom.getPlayers().size());
 	}
 	
 	@Test

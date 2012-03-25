@@ -47,6 +47,16 @@ public class Player extends Character {
 	}
 	
 	@Override
+	protected void enterCurrentRoom() {
+		getCurrentRoom().addPlayer(this);
+	}
+
+	@Override
+	protected void exitCurrentRoom() {
+		getCurrentRoom().removePlayer(this);
+	}
+	
+	@Override
 	public boolean equals(Object obj) {
 		boolean equals = false;
 		if (obj instanceof Player) {
@@ -74,6 +84,5 @@ public class Player extends Character {
 		return "Player [title=" + title + ", currentRoom ="
 				+ getCurrentRoom().getId() + "]";
 	}
-	
-	
+
 }

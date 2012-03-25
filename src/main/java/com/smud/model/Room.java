@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.smud.model.character.Character;
+import com.smud.model.character.Monster;
+import com.smud.model.character.Player;
 import com.smud.model.command.Response;
 
 public class Room implements Resetable {
@@ -17,7 +19,10 @@ public class Room implements Resetable {
 	private Map<Direction, Room> roomExits = new HashMap<Direction, Room>();
 	
 	// TODO change for a concurrent collection 
-	private List<Character> characters = new ArrayList<Character>();
+	private List<Player> players = new ArrayList<Player>();
+	
+	// TODO change for a concurrent collection 
+	private List<Monster> monsters = new ArrayList<Monster>();
 	
 	private List<ResetAction<Room>> resetActions = new ArrayList<ResetAction<Room>>();
 
@@ -57,16 +62,28 @@ public class Room implements Resetable {
 		this.resetActions = resetActions;
 	}
 
-	public List<Character> getCharacters() {
-		return characters;
+	public List<Player> getPlayers() {
+		return players;
 	}
 	
-	public void addCharacter(Character character) {
-		characters.add(character);
+	public void addPlayer(Player player) {
+		players.add(player);
 	}
 	
-	public void removeCharacter(Character character) {
-		characters.remove(character);
+	public void removePlayer(Player player) {
+		players.remove(player);
+	}
+
+	public List<Monster> getMonsters() {
+		return monsters;
+	}
+	
+	public void addMonster(Monster monster) {
+		monsters.add(monster);
+	}
+	
+	public void removeMonster(Monster monster) {
+		monsters.remove(monster);
 	}
 	
 	public void addRoomExit(Direction direction, Room destinationRoom) {
@@ -74,13 +91,13 @@ public class Room implements Resetable {
 	}
 	
 	public void broadcast(Response response) {
-		for (Character character : characters) {
+		for (Character character : players) {
 			character.addResponse(response);
 		}
 	}
 
 	public void sendToOtherCharacters(Response response, Character character) {
-		for (Character characterInRoom : characters) {
+		for (Character characterInRoom : players) {
 			if (!characterInRoom.equals(character)){
 				characterInRoom.addResponse(response);
 			}

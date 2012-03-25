@@ -10,5 +10,6 @@
 	<!-- Zone 30 -->
 	<bean id="createFidoAction"	class="com.smud.model.CreateMonsterResetAction">
 		<property name="monsterDefinition" ref="monster3062"/>
+		<property name="maxQuantity" value="2"/>
 	</bean>
 </beans>

@@ -31,20 +31,19 @@ public abstract class Character {
 	}
 
 	public void enters(Room inRoom) {
-		
 		if ( currentRoom != null ) {
 			exitCurrentRoom();
 		}
-		
 		this.currentRoom = inRoom;
-		inRoom.addCharacter(this);
+		enterCurrentRoom();
 	}
 
-	private void exitCurrentRoom() {
-		currentRoom.removeCharacter(this);		
-	}
 
 	public abstract void addResponse(Response response);
 
 	public abstract String getDescriptionToRoom();
+	
+	protected abstract void enterCurrentRoom();
+	
+	protected abstract void exitCurrentRoom();
 }

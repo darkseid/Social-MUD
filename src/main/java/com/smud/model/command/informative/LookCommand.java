@@ -32,14 +32,18 @@ public class LookCommand implements Command {
 		commandResponse.addResponse(new Response(roomsProperties.getProperty("room." + room.getId() + ".title"), Color.CYAN));
 		commandResponse.addResponse(new Response(roomsProperties.getProperty("room." + room.getId() + ".description"), Color.WHITE));
 		commandResponse.addResponse(new Response(createExitsResponse(room), Color.DARK_GREEN));
-		List<Character> charactersInRoom = room.getCharacters();
+		showCharacters(player, commandResponse, room.getMonsters());
+		showCharacters(player, commandResponse, room.getPlayers());
+		return commandResponse;
+	}
+
+	private void showCharacters(Player player, CommandResponse commandResponse, List<? extends Character> charactersInRoom) {
 		for (Character characterInRoom : charactersInRoom) {
 			if (!player.equals(characterInRoom)) {
 				String characterRoomDescription = characterInRoom.getDescriptionToRoom();
 				commandResponse.addResponse(new Response(characterRoomDescription, Color.DARK_YELLOW));
 			}
 		}
-		return commandResponse;
 	}
 	
 	@Override

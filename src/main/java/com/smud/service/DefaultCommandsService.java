@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 
 import com.smud.model.Input;
 import com.smud.model.character.Player;
@@ -20,19 +19,21 @@ public class DefaultCommandsService implements CommandsService {
 	
 	@Override
 	public CommandResponse parseCommand(Player player, String input) {
-		
+		CommandResponse commandResponse = null;
 		Input commandInput = extractCommandAndParameters(input);
 		
-		for (Command command : commands) {
-			if (command.getCommandName().toLowerCase().startsWith(commandInput.getCommandName().toLowerCase())){
-				return command.execute(player, commandInput.getParameters());
+		if (!commandInput.getCommandName().isEmpty()){
+			for (Command command : commands) {
+				if (command.getCommandName().toLowerCase().startsWith(commandInput.getCommandName().toLowerCase())){
+					commandResponse = command.execute(player, commandInput.getParameters());
+					break;
+				}
 			}
 		}
 		
 		
 		repo.updates(player);
-		
-		return null;
+		return commandResponse;
 	}
 	
 	private Input extractCommandAndParameters(String inputCommand) {
