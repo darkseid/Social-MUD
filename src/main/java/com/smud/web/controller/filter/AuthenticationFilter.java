@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.smud.model.User;
+
 public class AuthenticationFilter implements Filter {
 
 	@Override
@@ -25,7 +27,7 @@ public class AuthenticationFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		
 		HttpSession session = httpServletRequest.getSession();
-		Object authenticatedUser = session.getAttribute("authenticated_user");
+		User authenticatedUser = (User) session.getAttribute("authenticated_user");
 		if (authenticatedUser == null) {
 			httpServletResponse.sendRedirect("/login.do");
 		} else {

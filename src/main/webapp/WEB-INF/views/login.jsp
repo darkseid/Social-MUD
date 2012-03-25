@@ -7,14 +7,32 @@
 		<title>Login</title>
 	</head>
 	<body>
-	
+
+<div class="login">	
 	<h1>Login</h1>
 	
 	<form action="/authenticate.do" method="POST">
-		<label>User:</label>
+		<label for="user">User:</label>
 		<input type="text" name="user"/>
+		<label for="password">password:</label>
+		<input type="text" name="password"/>		
 		<input type="submit" value="Login"/>
 	</form>
+</div>
+
+<div class="newUser">
+
+	<h1>Login</h1>
+	
+	<form action="/newUser.do" method="POST">
+		<label for="userName">User name:</label>
+		<input type="text" name="userName"/>
+		<label for="password">User name:</label>
+		<input type="password" name="password"/>		
+		<input type="submit" value="Create"/>
+	</form>
+	
+</div>
 
 	</body>
 </html>

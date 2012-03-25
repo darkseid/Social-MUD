@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smud.model.Player;
-import com.smud.service.PlayerService;
+import com.smud.model.User;
+import com.smud.service.RedisRepository;
 
 @Controller
 public class AuthenticationController {
 
 	@Autowired
-	private PlayerService playerService;
+	private RedisRepository redisRepository;
 	
 	@RequestMapping("login.do")
 	public ModelAndView login() {
@@ -24,14 +25,26 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value="authenticate.do", method=RequestMethod.POST)
-	public ModelAndView authenticate(HttpServletRequest request, String user) {
-		Player player = playerService.findPlayer(user);
-		if (player != null) {
+	public ModelAndView authenticate(HttpServletRequest request, @RequestParam(value="user") String userName, @RequestParam(value="password") String password) {
+		
+		User user = redisRepository.findUser(userName);
+		
+		if (user != null && user.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
-			session.setAttribute("authenticated_user", player);
+			session.setAttribute("authenticated_user", user);
 			return new ModelAndView("redirect:/game/index.do");
 		} else {
 			return login();
 		}
 	}
+	
+	@RequestMapping(value="newUser.do", method=RequestMethod.POST)
+	public ModelAndView addUser(HttpServletRequest request, String userName, String password) {
+
+		redisRepository.addUser(userName, password);
+		
+		return new ModelAndView("redirect:/game/index.do");
+		
+		
+	}	
 }

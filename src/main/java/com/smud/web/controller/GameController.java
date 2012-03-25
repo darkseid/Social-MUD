@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smud.model.Player;
+import com.smud.model.User;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
 import com.smud.service.CommandsService;
@@ -37,7 +38,10 @@ public class GameController {
 	
 	@RequestMapping("retrieveMessages.do")
 	public @ResponseBody CommandResponse retrieveMessage(HttpServletRequest request) {
-		Player player = (Player) request.getSession().getAttribute("authenticated_user");
+		User user =  (User) request.getSession().getAttribute("authenticated_user");
+		
+		Player player = user.getPlayer();
+		
 		CommandResponse commandResponse = new CommandResponse();
 		Response response = player.getResponse();
 		//TODO add a time limit to consuming the queue

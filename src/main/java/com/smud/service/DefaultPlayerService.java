@@ -4,24 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smud.model.Player;
+import com.smud.model.User;
 
 @Service
 public class DefaultPlayerService implements PlayerService {
-
-	@Autowired
-	private Player mockPlayer;
 	
 	@Autowired
-	private Player mockPlayer2;
+	private RedisRepository repository;
 	
 	@Override
 	public Player findPlayer(String playerName) {
-		if (playerName.equals(mockPlayer.getName())) {
-			return mockPlayer;
-		} else if (playerName.equals(mockPlayer2.getName())) {
-			return mockPlayer2;
-		} 
-		return null;
+		
+		
+		User user = repository.findUser(playerName);
+		Player player = new Player();
+		player.setId((int)user.getId());
+		player.setName(user.getName());
+		
+		return player;
 	}
 	
 }
