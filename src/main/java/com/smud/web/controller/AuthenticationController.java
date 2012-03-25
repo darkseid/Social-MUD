@@ -1,10 +1,15 @@
 package com.smud.web.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingErrorProcessor;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +45,9 @@ public class AuthenticationController {
 			
 			return new ModelAndView("redirect:/game/index.do");
 		} else {
+			ArrayList<FieldError> errors = new ArrayList<FieldError>();
+			errors.add(new FieldError("user", "password", "Wrong username / password"));
+			request.setAttribute("errors", errors);
 			return login();
 		}
 	}
