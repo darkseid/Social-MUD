@@ -4,9 +4,9 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import com.smud.model.Color;
-import com.smud.model.Player;
 import com.smud.model.Room;
 import com.smud.model.Zone;
+import com.smud.model.character.Player;
 import com.smud.model.command.Command;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
@@ -25,7 +25,7 @@ public class ShoutCommand implements Command {
 		Zone zone = room.getZone();
 		List<Room> zoneRooms = zone.getRooms();
 		for (Room zoneRoom : zoneRooms) {
-			zoneRoom.sendToOtherPlayers(new Response(messageToOthers, Color.DARK_GREEN), player);
+			zoneRoom.sendToOtherCharacters(new Response(messageToOthers, Color.DARK_GREEN), player);
 		}
 		
 		CommandResponse commandResponse = new CommandResponse();

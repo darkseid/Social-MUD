@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.smud.model.Input;
-import com.smud.model.Player;
+import com.smud.model.character.Player;
 import com.smud.model.command.Command;
 import com.smud.model.command.CommandResponse;
 

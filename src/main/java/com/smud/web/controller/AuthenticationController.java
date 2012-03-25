@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smud.model.User;
+import com.smud.model.Zone;
 import com.smud.service.RedisRepository;
+import com.smud.service.RoomService;
 
 @Controller
 public class AuthenticationController {
 
 	@Autowired
 	private RedisRepository redisRepository;
+	
+	@Autowired
+	private Zone zone30;
 	
 	@RequestMapping("login.do")
 	public ModelAndView login() {
@@ -32,6 +37,10 @@ public class AuthenticationController {
 		if (user != null && user.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("authenticated_user", user);
+			
+			// TODO remove this mock
+			user.getPlayer().setInRoom(zone30.getRooms().get(0));
+			
 			return new ModelAndView("redirect:/game/index.do");
 		} else {
 			return login();

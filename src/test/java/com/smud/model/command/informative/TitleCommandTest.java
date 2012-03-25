@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.smud.model.Color;
-import com.smud.model.Player;
+import com.smud.model.character.Player;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
 

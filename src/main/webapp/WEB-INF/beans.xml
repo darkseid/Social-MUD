@@ -14,6 +14,14 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="monsterProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/properties/monsters.properties</value>
+			</list>
+		</property>
+	</bean>
 
 	<!-- Jedis ConnectionFactory -->
 	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" />

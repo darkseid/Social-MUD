@@ -4,7 +4,7 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import com.smud.model.Color;
-import com.smud.model.Player;
+import com.smud.model.character.Player;
 
 public class PlayerTest extends TestCase {
 

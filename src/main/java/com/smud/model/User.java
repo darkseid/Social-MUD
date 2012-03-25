@@ -1,5 +1,7 @@
 package com.smud.model;
 
+import com.smud.model.character.Player;
+
 public class User {
 
 	private long id;

@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.smud.model.character.Character;
 import com.smud.model.command.Response;
 
-
-public class Room {
+public class Room implements Resetable {
 
 	private int id;
 	
@@ -17,7 +17,9 @@ public class Room {
 	private Map<Direction, Room> roomExits = new HashMap<Direction, Room>();
 	
 	// TODO change for a concurrent collection 
-	private List<Player> players = new ArrayList<Player>();
+	private List<Character> characters = new ArrayList<Character>();
+	
+	private List<ResetAction<Room>> resetActions = new ArrayList<ResetAction<Room>>();
 
 	public int getId() {
 		return id;
@@ -46,17 +48,25 @@ public class Room {
 	public Room getRoomExit(Direction direction){
 		return roomExits.get(direction);
 	}
+	
+	public List<ResetAction<Room>> getResetActions() {
+		return resetActions;
+	}
+	
+	public void setResetActions(List<ResetAction<Room>> resetActions) {
+		this.resetActions = resetActions;
+	}
 
-	public List<Player> getPlayers() {
-		return players;
+	public List<Character> getCharacters() {
+		return characters;
 	}
 	
-	public void addPlayer(Player player) {
-		players.add(player);
+	public void addCharacter(Character character) {
+		characters.add(character);
 	}
 	
-	public void removePlayer(Player player) {
-		players.remove(player);
+	public void removeCharacter(Character character) {
+		characters.remove(character);
 	}
 	
 	public void addRoomExit(Direction direction, Room destinationRoom) {
@@ -64,16 +74,22 @@ public class Room {
 	}
 	
 	public void broadcast(Response response) {
-		for (Player player : players) {
-			player.addResponse(response);
+		for (Character character : characters) {
+			character.addResponse(response);
 		}
 	}
 
-	public void sendToOtherPlayers(Response response, Player player) {
-		for (Player playerInRoom : players) {
-			if (!playerInRoom.equals(player)){
-				playerInRoom.addResponse(response);
+	public void sendToOtherCharacters(Response response, Character character) {
+		for (Character characterInRoom : characters) {
+			if (!characterInRoom.equals(character)){
+				characterInRoom.addResponse(response);
 			}
+		}
+	}
+	
+	public void reset() {
+		for (ResetAction<Room> resetAction : resetActions) {
+			resetAction.execute(this);
 		}
 	}
 	

@@ -1,27 +1,26 @@
-package com.smud.model.command.informative;
-
-import java.text.MessageFormat;
+package com.smud.model.command.admin;
 
 import com.smud.model.Color;
+import com.smud.model.Room;
 import com.smud.model.character.Player;
 import com.smud.model.command.Command;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
 
-public class TitleCommand implements Command {
+//TODO make this an immortal level command
+public class ResetCommand implements Command {
 
-	private static final String COMMAND_NAME = "title";
+	private static final String COMMAND_NAME = "reset";
 	
 	@Override
 	public CommandResponse execute(Player player, String parameters) {
-		player.setTitle(parameters);
+		Room inRoom = player.getInRoom();
+		inRoom.reset();
 		CommandResponse commandResponse = new CommandResponse();
-		//TODO change for property key
-		String responseText = MessageFormat.format("You are now {0} {1}", player.getName(), player.getTitle());
-		commandResponse.addResponse(new Response(responseText, Color.WHITE));
+		commandResponse.addResponse(new Response("OK", Color.WHITE));
 		return commandResponse;
 	}
-	
+
 	@Override
 	public String getCommandName() {
 		return COMMAND_NAME;
