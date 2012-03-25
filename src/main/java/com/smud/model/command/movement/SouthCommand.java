@@ -10,7 +10,7 @@ public class SouthCommand extends MovementCommand {
 	
 	@Override
 	protected Room getDestinationRoom(Player player) {
-		Room room = player.getInRoom();
+		Room room = player.getCurrentRoom();
 		return room.getRoomExit(Direction.SOUTH);
 	}
 	

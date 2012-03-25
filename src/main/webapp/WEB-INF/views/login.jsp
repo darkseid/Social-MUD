@@ -22,7 +22,7 @@
 
 <div class="newUser">
 
-	<h1>Login</h1>
+	<h1>Create a new user</h1>
 	
 	<form action="/newUser.do" method="POST">
 		<label for="userName">User name:</label>

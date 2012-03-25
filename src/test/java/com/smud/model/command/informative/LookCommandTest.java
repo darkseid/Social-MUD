@@ -41,12 +41,12 @@ public class LookCommandTest {
 		room.setRoomExits(roomExits);
 		
 		Player player = new Player();
-		player.setInRoom(room);
+		player.enters(room);
 		
 		Player otherPlayer = new Player();
 		otherPlayer.setName("Mock");
 		otherPlayer.setTitle("Title");
-		otherPlayer.setInRoom(room);
+		otherPlayer.enters(room);
 		
 		Properties roomsProperties = new Properties();
 		roomsProperties.put("room."+ ROOM_ID + ".title", ROOM_TITLE);

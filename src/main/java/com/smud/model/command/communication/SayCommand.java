@@ -15,7 +15,7 @@ public class SayCommand implements Command {
 
 	@Override
 	public CommandResponse execute(Player player, String parameters) {
-		Room room = player.getInRoom();
+		Room room = player.getCurrentRoom();
 		//TODO change for property key
 		String messageToPlayer = MessageFormat.format("You say: {0}", parameters);
 		String messageToOthers = MessageFormat.format("{0} says: {1}", player.getName(), parameters);

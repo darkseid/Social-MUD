@@ -9,6 +9,9 @@ public class User {
 	private String password;
 	private Player player;
 	
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
 	public User(long id, String name, String password) {
 		super();
 		this.id = id;

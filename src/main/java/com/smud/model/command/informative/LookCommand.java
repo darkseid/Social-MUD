@@ -27,7 +27,7 @@ public class LookCommand implements Command {
 	
 	@Override
 	public CommandResponse execute(Player player, String parameters) {
-		Room room = player.getInRoom();
+		Room room = player.getCurrentRoom();
 		CommandResponse commandResponse = new CommandResponse();
 		commandResponse.addResponse(new Response(roomsProperties.getProperty("room." + room.getId() + ".title"), Color.CYAN));
 		commandResponse.addResponse(new Response(roomsProperties.getProperty("room." + room.getId() + ".description"), Color.WHITE));

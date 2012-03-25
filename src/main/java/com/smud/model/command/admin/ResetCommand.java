@@ -14,7 +14,7 @@ public class ResetCommand implements Command {
 	
 	@Override
 	public CommandResponse execute(Player player, String parameters) {
-		Room inRoom = player.getInRoom();
+		Room inRoom = player.getCurrentRoom();
 		inRoom.reset();
 		CommandResponse commandResponse = new CommandResponse();
 		commandResponse.addResponse(new Response("OK", Color.WHITE));

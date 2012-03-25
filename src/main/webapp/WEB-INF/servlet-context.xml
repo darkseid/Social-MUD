@@ -27,7 +27,7 @@
 	
 	<import resource="beans.xml"/>
 	<import resource="commands.xml"/>
-	<import resource="mock.xml"/>
+<!-- 	<import resource="mock.xml"/> -->
 	<import resource="monsters.xml"/>
 	<import resource="reset-actions.xml"/>
 	<import resource="rooms.xml"/>

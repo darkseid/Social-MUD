@@ -5,15 +5,15 @@ import com.smud.model.command.Response;
 
 public abstract class Character {
 
-	private int id;
+	private long id;
 	private String name;
-	private Room inRoom;
+	private Room currentRoom;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -26,13 +26,22 @@ public abstract class Character {
 	}
 	
 
-	public Room getInRoom() {
-		return inRoom;
+	public Room getCurrentRoom() {
+		return currentRoom;
 	}
 
-	public void setInRoom(Room inRoom) {
-		this.inRoom = inRoom;
+	public void enters(Room inRoom) {
+		
+		if ( currentRoom != null ) {
+			exitCurrentRoom();
+		}
+		
+		this.currentRoom = inRoom;
 		inRoom.addCharacter(this);
+	}
+
+	private void exitCurrentRoom() {
+		currentRoom.removeCharacter(this);		
 	}
 
 	public abstract void addResponse(Response response);

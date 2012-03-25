@@ -21,8 +21,8 @@ public class AuthenticationController {
 	@Autowired
 	private RedisRepository redisRepository;
 	
-	@Autowired
-	private Zone zone30;
+//	@Autowired
+//	private Zone zone30;
 	
 	@RequestMapping("login.do")
 	public ModelAndView login() {
@@ -38,9 +38,6 @@ public class AuthenticationController {
 			HttpSession session = request.getSession();
 			session.setAttribute("authenticated_user", user);
 			
-			// TODO remove this mock
-			user.getPlayer().setInRoom(zone30.getRooms().get(0));
-			
 			return new ModelAndView("redirect:/game/index.do");
 		} else {
 			return login();
@@ -49,11 +46,7 @@ public class AuthenticationController {
 	
 	@RequestMapping(value="newUser.do", method=RequestMethod.POST)
 	public ModelAndView addUser(HttpServletRequest request, String userName, String password) {
-
 		redisRepository.addUser(userName, password);
-		
 		return new ModelAndView("redirect:/game/index.do");
-		
-		
 	}	
 }

@@ -17,8 +17,8 @@ public class RoomTest extends TestCase {
 		Player p2 = new Player();
 
 		
-		p1.setInRoom(room);
-		p2.setInRoom(room);
+		p1.enters(room);
+		p2.enters(room);
 		
 		room.broadcast(new Response("Teste", Color.WHITE));
 		

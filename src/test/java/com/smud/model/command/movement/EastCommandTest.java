@@ -29,7 +29,7 @@ public class EastCommandTest {
 		sourceRoom.addRoomExit(Direction.EAST, destinationRoom);
 		
 		Player player = new Player();
-		player.setInRoom(sourceRoom);
+		player.enters(sourceRoom);
 		Room result = command.getDestinationRoom(player);
 		
 		Assert.assertEquals(destinationRoom, result);

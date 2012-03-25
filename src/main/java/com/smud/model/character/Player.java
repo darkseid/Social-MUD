@@ -68,4 +68,12 @@ public class Player extends Character {
 		.append(getTitle())
 		.toHashCode();
 	}
+
+	@Override
+	public String toString() {
+		return "Player [title=" + title + ", currentRoom ="
+				+ getCurrentRoom().getId() + "]";
+	}
+	
+	
 }

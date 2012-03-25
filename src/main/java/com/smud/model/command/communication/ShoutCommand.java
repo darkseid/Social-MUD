@@ -21,7 +21,7 @@ public class ShoutCommand implements Command {
 		String messageToPlayer = MessageFormat.format("You shout: {0}", parameters);
 		String messageToOthers = MessageFormat.format("{0} shouts: {1}", player.getName(), parameters);
 		
-		Room room = player.getInRoom();
+		Room room = player.getCurrentRoom();
 		Zone zone = room.getZone();
 		List<Room> zoneRooms = zone.getRooms();
 		for (Room zoneRoom : zoneRooms) {

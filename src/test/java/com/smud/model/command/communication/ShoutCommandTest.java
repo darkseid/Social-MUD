@@ -32,7 +32,7 @@ public class ShoutCommandTest {
 		room.setZone(zone);
 		
 		Player player = new Player();
-		player.setInRoom(room);
+		player.enters(room);
 		String parameters = "message";
 		
 		CommandResponse result = command.execute(player, parameters);
@@ -60,11 +60,11 @@ public class ShoutCommandTest {
 		
 		Player player = new Player();
 		player.setName("player1");
-		player.setInRoom(room);
+		player.enters(room);
 		
 		Player otherPlayer = new Player();
 		otherPlayer.setName("player2");
-		otherPlayer.setInRoom(otherRoom);
+		otherPlayer.enters(otherRoom);
 		
 		String parameters = "message";
 		

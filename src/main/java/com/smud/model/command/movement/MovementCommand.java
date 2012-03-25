@@ -20,9 +20,10 @@ public abstract class MovementCommand implements Command {
 		Room destinationRoom = getDestinationRoom(player);
 		
 		if (destinationRoom != null) {
-			Room room = player.getInRoom();
-			room.removeCharacter(player);
-			player.setInRoom(destinationRoom);
+			player.enters(destinationRoom);
+			
+			// TODO must update the user's room
+			
 			return lookCommand.execute(player, parameters);
 		} else {
 			CommandResponse commandResponse = new CommandResponse();

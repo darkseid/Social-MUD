@@ -23,7 +23,7 @@ public class SayCommandTest {
 	@Test
 	public void testReturnMessageToPlayer() {
 		Player player = new Player();
-		player.setInRoom(new Room());
+		player.enters(new Room());
 		String parameters = "message";
 		
 		CommandResponse result = command.execute(player, parameters);
@@ -40,11 +40,11 @@ public class SayCommandTest {
 		
 		Player player = new Player();
 		player.setName("player1");
-		player.setInRoom(room);
+		player.enters(room);
 		
 		Player otherPlayer = new Player();
 		otherPlayer.setName("player2");
-		otherPlayer.setInRoom(room);
+		otherPlayer.enters(room);
 		
 		String parameters = "message";
 		

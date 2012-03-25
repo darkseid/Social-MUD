@@ -36,11 +36,11 @@ public class MovementCommandTest {
 		sourceRoom.addRoomExit(Direction.NORTH, destinationRoom);
 		
 		Player player = new Player();
-		player.setInRoom(sourceRoom);
+		player.enters(sourceRoom);
 		
 		command.execute(player, null);
 		
-		Assert.assertEquals(destinationRoom, player.getInRoom());
+		Assert.assertEquals(destinationRoom, player.getCurrentRoom());
 	}
 	
 	@Test
@@ -53,7 +53,7 @@ public class MovementCommandTest {
 		sourceRoom.addRoomExit(Direction.NORTH, destinationRoom);
 		
 		Player player = new Player();
-		player.setInRoom(sourceRoom);
+		player.enters(sourceRoom);
 		
 		command.execute(player, null);
 		
@@ -70,7 +70,7 @@ public class MovementCommandTest {
 		sourceRoom.addRoomExit(Direction.NORTH, destinationRoom);
 		
 		Player player = new Player();
-		player.setInRoom(sourceRoom);
+		player.enters(sourceRoom);
 		
 		command.execute(player, null);
 		
@@ -87,7 +87,7 @@ public class MovementCommandTest {
 		sourceRoom.addRoomExit(Direction.NORTH, destinationRoom);
 		
 		Player player = new Player();
-		player.setInRoom(sourceRoom);
+		player.enters(sourceRoom);
 		
 		command.execute(player, null);
 		
@@ -100,7 +100,7 @@ public class MovementCommandTest {
 		sourceRoom.setId(1);
 		
 		Player player = new Player();
-		player.setInRoom(sourceRoom);
+		player.enters(sourceRoom);
 		
 		CommandResponse result = command.execute(player, null);
 		
