@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smud.model.Player;
+import com.smud.model.character.Player;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
 import com.smud.service.CommandsService;

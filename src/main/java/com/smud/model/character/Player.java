@@ -1,5 +1,6 @@
-package com.smud.model;
+package com.smud.model.character;
 
+import java.text.MessageFormat;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -9,45 +10,17 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.smud.model.command.Response;
 
 
-public class Player {
+public class Player extends Character {
 
-	private int id;
-	private String name;
 	private String title;
-	private Room inRoom;
 	private Queue<Response> responses;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	public String getTitle() {
 		return title;
-	}
-
-	public Room getInRoom() {
-		return inRoom;
-	}
-
-	public void setInRoom(Room inRoom) {
-		this.inRoom = inRoom;
-		inRoom.addPlayer(this);
 	}
 	
 	public void addResponse(Response response) {
@@ -68,13 +41,19 @@ public class Player {
 	}
 	
 	@Override
+	public String getDescriptionToRoom() {
+		//TODO use property key
+		return MessageFormat.format("{0} {1} is here.", getName(), getTitle());
+	}
+	
+	@Override
 	public boolean equals(Object obj) {
 		boolean equals = false;
 		if (obj instanceof Player) {
 			Player other = (Player) obj;
 			equals = new EqualsBuilder()
-			.append(this.id, other.id)
-			.append(this.name, other.name)
+			.append(this.getId(), other.getId())
+			.append(this.getName(), other.getName())
 			.append(this.title, other.title)
 			.isEquals();
 		}
@@ -84,9 +63,9 @@ public class Player {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-		.append(id)
-		.append(name)
-		.append(title)
+		.append(getId())
+		.append(getName())
+		.append(getTitle())
 		.toHashCode();
 	}
 }

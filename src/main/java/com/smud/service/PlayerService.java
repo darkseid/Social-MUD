@@ -1,6 +1,6 @@
 package com.smud.service;
 
-import com.smud.model.Player;
+import com.smud.model.character.Player;
 
 public interface PlayerService {
 

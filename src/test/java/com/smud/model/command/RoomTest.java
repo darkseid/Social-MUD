@@ -4,8 +4,8 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import com.smud.model.Color;
-import com.smud.model.Player;
 import com.smud.model.Room;
+import com.smud.model.character.Player;
 
 public class RoomTest extends TestCase {
 

@@ -3,7 +3,7 @@ package com.smud.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.smud.model.Player;
+import com.smud.model.character.Player;
 
 @Service
 public class DefaultPlayerService implements PlayerService {

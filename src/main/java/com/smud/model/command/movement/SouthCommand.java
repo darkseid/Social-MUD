@@ -1,8 +1,8 @@
 package com.smud.model.command.movement;
 
 import com.smud.model.Direction;
-import com.smud.model.Player;
 import com.smud.model.Room;
+import com.smud.model.character.Player;
 
 public class SouthCommand extends MovementCommand {
 

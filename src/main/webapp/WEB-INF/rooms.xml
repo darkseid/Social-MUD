@@ -38,6 +38,11 @@
 				<entry key="NORTH" value-ref="room3001"/>
 			</map>
 		</property>
+		<property name="resetActions">
+			<list>
+				<ref bean="createFidoAction"/>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="room3063"	class="com.smud.model.Room">

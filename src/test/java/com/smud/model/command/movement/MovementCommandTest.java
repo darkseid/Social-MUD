@@ -8,8 +8,8 @@ import org.mockito.Mockito;
 
 import com.smud.model.Color;
 import com.smud.model.Direction;
-import com.smud.model.Player;
 import com.smud.model.Room;
+import com.smud.model.character.Player;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
 import com.smud.model.command.informative.LookCommand;
@@ -57,7 +57,7 @@ public class MovementCommandTest {
 		
 		command.execute(player, null);
 		
-		Assert.assertEquals(0, sourceRoom.getPlayers().size());
+		Assert.assertEquals(0, sourceRoom.getCharacters().size());
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class MovementCommandTest {
 		
 		command.execute(player, null);
 		
-		Assert.assertEquals(1, destinationRoom.getPlayers().size());
+		Assert.assertEquals(1, destinationRoom.getCharacters().size());
 	}
 	
 	@Test

@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.smud.model.Direction;
-import com.smud.model.Player;
 import com.smud.model.Room;
+import com.smud.model.character.Player;
 import com.smud.model.command.movement.SouthCommand;
 
 public class SouthCommandTest {
