@@ -48,10 +48,10 @@ public class LookCommandTest {
 		otherPlayer.setTitle("Title");
 		otherPlayer.enters(room);
 		
-		Properties roomsProperties = new Properties();
-		roomsProperties.put("room."+ ROOM_ID + ".title", ROOM_TITLE);
-		roomsProperties.put("room."+ ROOM_ID + ".description", ROOM_DESCRIPTION);
-		this.command.setRoomsProperties(roomsProperties);
+		Properties textProperties = new Properties();
+		textProperties.put("room."+ ROOM_ID + ".title", ROOM_TITLE);
+		textProperties.put("room."+ ROOM_ID + ".description", ROOM_DESCRIPTION);
+		this.command.setTextProperties(textProperties);
 		
 		CommandResponse expectedResult = new CommandResponse();
 		expectedResult.addResponse(new Response(ROOM_TITLE, Color.CYAN));

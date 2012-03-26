@@ -1,17 +1,19 @@
-package com.smud.model;
+package com.smud.model.action;
 
 import java.util.List;
 import java.util.Properties;
 
 import javax.annotation.Resource;
 
+import com.smud.model.ResetAction;
+import com.smud.model.Room;
 import com.smud.model.character.Monster;
 import com.smud.model.definition.MonsterDefinition;
 
 public class CreateMonsterResetAction implements ResetAction<Room> {
 	
-	@Resource(name="monsterProperties")
-	private Properties monstersProperties;
+	@Resource(name="textProperties")
+	private Properties textProperties;
 
 	private MonsterDefinition monsterDefinition;
 	
@@ -35,11 +37,15 @@ public class CreateMonsterResetAction implements ResetAction<Room> {
 		this.maxQuantity = maxQuantity;
 	}
 	
+	public void setTextProperties(Properties textProperties) {
+		this.textProperties = textProperties;
+	}
+	
 	private Monster createMonster() {
 		Monster monster = new Monster();
 		monster.setId(monsterDefinition.getId());
-		monster.setName(monstersProperties.getProperty("monster." + monsterDefinition.getId() + ".name"));
-		monster.setRoomDescription(monstersProperties.getProperty("monster." + monsterDefinition.getId() + ".room.description"));
+		monster.setName(textProperties.getProperty("monster." + monsterDefinition.getId() + ".name"));
+		monster.setRoomDescription(textProperties.getProperty("monster." + monsterDefinition.getId() + ".room.description"));
 		return monster;
 	}
 	

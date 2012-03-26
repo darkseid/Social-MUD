@@ -24,5 +24,11 @@ public class Zone {
 	public void setRooms(List<Room> rooms) {
 		this.rooms = rooms;
 	}
+
+	public void reset() {
+		for (Room room : rooms) {
+			room.reset();
+		}
+	}
 	
 }

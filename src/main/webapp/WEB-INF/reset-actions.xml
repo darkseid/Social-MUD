@@ -8,8 +8,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	<!-- Zone 30 -->
-	<bean id="createFidoAction"	class="com.smud.model.CreateMonsterResetAction">
+	<bean id="createMonsterFidoAction"	class="com.smud.model.action.CreateMonsterResetAction">
 		<property name="monsterDefinition" ref="monster3062"/>
 		<property name="maxQuantity" value="2"/>
+	</bean>
+	
+	<bean id="createItemFountainAction"	class="com.smud.model.action.CreateItemInRoomResetAction">
+		<property name="itemDefinition" ref="item3035"/>
+		<property name="maxQuantity" value="1"/>
 	</bean>
 </beans>

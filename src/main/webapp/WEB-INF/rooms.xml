@@ -40,7 +40,8 @@
 		</property>
 		<property name="resetActions">
 			<list>
-				<ref bean="createFidoAction"/>
+				<ref bean="createMonsterFidoAction"/>
+				<ref bean="createItemFountainAction"/>
 			</list>
 		</property>
 	</bean>

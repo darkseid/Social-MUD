@@ -20,4 +20,19 @@
 		</property>
 	</bean>
 	
+	<bean name="resetZone30Job" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.smud.jobs.ResetZoneJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="zone" value-ref="zone30" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="resetZone30Trigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	    <property name="jobDetail" ref="resetZone30Job" />
+	    <property name="startDelay" value="0" />
+	    <property name="repeatInterval" value="600000" />
+	</bean>
+	
 </beans>

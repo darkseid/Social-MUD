@@ -26,6 +26,8 @@ public class Room implements Resetable {
 	
 	private List<ResetAction<Room>> resetActions = new ArrayList<ResetAction<Room>>();
 
+	private List<Item> items = new ArrayList<Item>();
+
 	public int getId() {
 		return id;
 	}
@@ -108,6 +110,14 @@ public class Room implements Resetable {
 		for (ResetAction<Room> resetAction : resetActions) {
 			resetAction.execute(this);
 		}
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+	
+	public void addItem(Item item) {
+		this.items.add(item);
 	}
 	
 }

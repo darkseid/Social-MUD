@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import com.smud.model.Color;
 import com.smud.model.Direction;
+import com.smud.model.Item;
 import com.smud.model.Room;
 import com.smud.model.character.Character;
 import com.smud.model.character.Player;
@@ -22,16 +23,17 @@ public class LookCommand implements Command {
 	private static final String ROOM_EXITS_RIGHT_BRACKET = "]";
 	private static final String DIRECTION_SEPARATOR = " ";
 	
-	@Resource(name="roomProperties")
-	private Properties roomsProperties;
+	@Resource(name="textProperties")
+	private Properties textProperties;
 	
 	@Override
 	public CommandResponse execute(Player player, String parameters) {
 		Room room = player.getCurrentRoom();
 		CommandResponse commandResponse = new CommandResponse();
-		commandResponse.addResponse(new Response(roomsProperties.getProperty("room." + room.getId() + ".title"), Color.CYAN));
-		commandResponse.addResponse(new Response(roomsProperties.getProperty("room." + room.getId() + ".description"), Color.WHITE));
+		commandResponse.addResponse(new Response(textProperties.getProperty("room." + room.getId() + ".title"), Color.CYAN));
+		commandResponse.addResponse(new Response(textProperties.getProperty("room." + room.getId() + ".description"), Color.WHITE));
 		commandResponse.addResponse(new Response(createExitsResponse(room), Color.DARK_GREEN));
+		showItems(player, commandResponse, room.getItems());
 		showCharacters(player, commandResponse, room.getMonsters());
 		showCharacters(player, commandResponse, room.getPlayers());
 		return commandResponse;
@@ -46,13 +48,19 @@ public class LookCommand implements Command {
 		}
 	}
 	
+	private void showItems(Player player, CommandResponse commandResponse, List<Item> itemsInRoom) {
+		for (Item item : itemsInRoom) {
+			commandResponse.addResponse(new Response(textProperties.getProperty("item." + item.getId() + ".room.description"), Color.DARK_GREEN));
+		}
+	}
+	
 	@Override
 	public String getCommandName() {
 		return COMMAND_NAME;
 	}
 
-	public void setRoomsProperties(Properties roomsProperties) {
-		this.roomsProperties = roomsProperties;
+	public void setTextProperties(Properties textProperties) {
+		this.textProperties = textProperties;
 	}
 	
 	private String createExitsResponse(Room room) {
