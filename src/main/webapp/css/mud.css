@@ -95,3 +95,8 @@ li{
 .WHITE {
 	color: white;
 }
+
+
+.formError {
+	color: red;
+}
