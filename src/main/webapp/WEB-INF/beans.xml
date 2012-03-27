@@ -17,8 +17,14 @@
 		</property>
 	</bean>
 	
+	<!-- HEROKU conf -->
+<bean id="jedisURI" class="java.net.URI">
+    <constructor-arg value="${REDISTOGO_URL}"/>
+</bean>
 	<!-- Jedis ConnectionFactory -->
 	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" />
+		p:host-name="#{ @jedisURI.getHost() }" p:port="#{ @jedisURI.getPort() }"/>
+	
 
 	<!-- redis template definition -->
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" p:connection-factory-ref="jedisConnectionFactory" />
