@@ -24,8 +24,6 @@
 </body>
 
 
-</html>
-
 <script>
 $("#command").bind("keypress", function(e) {
 	var code = (e.keyCode ? e.keyCode : e.which);
@@ -36,3 +34,4 @@ $("#command").bind("keypress", function(e) {
 	}
 });
 </script>
+</html>

@@ -1,14 +1,22 @@
 package com.smud.model.action;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
+
+import javax.annotation.Resource;
 
 import com.smud.model.Item;
+import com.smud.model.Keywords;
 import com.smud.model.ResetAction;
 import com.smud.model.Room;
 import com.smud.model.definition.ItemDefinition;
 
 public class CreateItemInRoomResetAction implements ResetAction<Room> {
 
+	@Resource(name="textProperties")
+	private Properties textProperties;
+	
 	private ItemDefinition itemDefinition;
 	
 	private int maxQuantity;
@@ -31,13 +39,25 @@ public class CreateItemInRoomResetAction implements ResetAction<Room> {
 		this.maxQuantity = maxQuantity;
 	}
 	
+	public void setTextProperties(Properties textProperties) {
+		this.textProperties = textProperties;
+	}
+	
 	private Item createItem() {
 		Item item = new Item();
 		item.setId(itemDefinition.getId());
 		item.setZone(itemDefinition.getZone());
+		item.setKeywords(createKeywords());
 		return item;
 	}
 	
+	//TODO single instance of Keywords for all items of the same kind
+	private Keywords createKeywords() {
+		Keywords keywords = new Keywords();
+		keywords.setWords(Arrays.asList(textProperties.getProperty("item." + itemDefinition.getId() + ".keywords").split(Keywords.KEYWORD_SEPARATOR)));
+		return keywords;
+	}
+
 	private int countNumberOfItems(List<Item> itemsInRoom, int id) {
 		int count = 0;
 		for (Item item : itemsInRoom) {

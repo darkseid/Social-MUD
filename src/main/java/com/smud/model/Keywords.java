@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Keywords {
 
-	private static final String KEYWORD_SEPARATOR = ",";
+	public static final String KEYWORD_SEPARATOR = ",";
 	
 	private List<String> words = new ArrayList<String>();
 	

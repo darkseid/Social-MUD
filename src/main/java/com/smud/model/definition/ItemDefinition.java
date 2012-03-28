@@ -7,7 +7,7 @@ public class ItemDefinition {
 	private int id;
 	
 	private Zone zone;
-
+	
 	public int getId() {
 		return id;
 	}

@@ -12,6 +12,8 @@ public class Item {
 	
 	private Zone zone;
 	
+	private Keywords keywords;
+	
 	public int getId() {
 		return id;
 	}
@@ -26,6 +28,14 @@ public class Item {
 	
 	public void setZone(Zone zone) {
 		this.zone = zone;
+	}
+	
+	public Keywords getKeywords() {
+		return keywords;
+	}
+	
+	public void setKeywords(Keywords keywords) {
+		this.keywords = keywords;
 	}
 	
 	@Override
