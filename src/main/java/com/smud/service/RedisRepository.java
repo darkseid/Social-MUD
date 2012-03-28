@@ -14,6 +14,7 @@ import org.springframework.data.redis.support.collections.DefaultRedisList;
 import org.springframework.data.redis.support.collections.RedisList;
 import org.springframework.stereotype.Service;
 
+import com.smud.model.Inventory;
 import com.smud.model.Room;
 import com.smud.model.User;
 import com.smud.model.Zone;
@@ -124,6 +125,8 @@ public class RedisRepository {
 		
 		Player player = new Player();
 		player.setTitle(title);
+		//TODO recover persisted inventory
+		player.setInventory(new Inventory());
 		
 		Room room = getRoom(Integer.valueOf(currentRoomId));
 		player.enters(room);
@@ -169,6 +172,8 @@ public class RedisRepository {
 		playerOps.put("user_id", String.valueOf(player.getId()));
 		playerOps.put("title", player.getTitle());
 		playerOps.put("current_room", String.valueOf(player.getCurrentRoom().getId()));
+		
+		//TODO persist player inventory
 		
 		// stores the player_id
 		valueOps.set(getUIDKey(user.getId()) + ":player", String.valueOf(playerId));

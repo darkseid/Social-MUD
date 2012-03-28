@@ -1,5 +1,6 @@
 package com.smud.model.character;
 
+import com.smud.model.Inventory;
 import com.smud.model.Room;
 import com.smud.model.command.Response;
 
@@ -8,6 +9,7 @@ public abstract class Character {
 	private long id;
 	private String name;
 	private Room currentRoom;
+	private Inventory inventory;
 	
 	public long getId() {
 		return id;
@@ -24,7 +26,6 @@ public abstract class Character {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 
 	public Room getCurrentRoom() {
 		return currentRoom;
@@ -37,8 +38,15 @@ public abstract class Character {
 		this.currentRoom = inRoom;
 		enterCurrentRoom();
 	}
-
-
+	
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+	}
+	
+	public Inventory getInventory() {
+		return inventory;
+	}
+	
 	public abstract void addResponse(Response response);
 
 	public abstract String getDescriptionToRoom();
