@@ -32,6 +32,8 @@ public class DefaultCommandsService implements CommandsService {
 			}
 		}
 		
+		// TODO Treat the case of empty command or unknown command
+		// It's currently causing an error in smud.js when parsing the response.
 		
 		playerRepository.updatePlayer(player);
 		return commandResponse;

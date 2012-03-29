@@ -3,14 +3,13 @@ package com.smud.model;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import com.smud.model.character.Monster;
-import com.smud.model.character.Player;
-
 public class Item {
 
 	private int id;
 	
 	private Zone zone;
+	
+	private Keywords keywords;
 	
 	public int getId() {
 		return id;
@@ -28,11 +27,19 @@ public class Item {
 		this.zone = zone;
 	}
 	
+	public Keywords getKeywords() {
+		return keywords;
+	}
+	
+	public void setKeywords(Keywords keywords) {
+		this.keywords = keywords;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		boolean equals = false;
-		if (obj instanceof Player) {
-			Monster other = (Monster) obj;
+		if (obj instanceof Item) {
+			Item other = (Item) obj;
 			equals = new EqualsBuilder()
 			.append(this.getId(), other.getId())
 			.isEquals();

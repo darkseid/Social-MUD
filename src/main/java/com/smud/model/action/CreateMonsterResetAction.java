@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 
+import com.smud.model.Inventory;
 import com.smud.model.ResetAction;
 import com.smud.model.Room;
 import com.smud.model.character.Monster;
@@ -46,6 +47,7 @@ public class CreateMonsterResetAction implements ResetAction<Room> {
 		monster.setId(monsterDefinition.getId());
 		monster.setName(textProperties.getProperty("monster." + monsterDefinition.getId() + ".name"));
 		monster.setRoomDescription(textProperties.getProperty("monster." + monsterDefinition.getId() + ".room.description"));
+		monster.setInventory(new Inventory());
 		return monster;
 	}
 	

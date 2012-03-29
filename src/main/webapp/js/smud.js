@@ -9,7 +9,7 @@ var SMUD = SMUD || {};
 		var command = $("#command").attr("value");
 
 		$.ajax({
-			type : "GET",
+			type : "POST",
 			url : 'command.do',
 			data : "command=" + command,
 			complete : function(data) {

@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,7 +32,7 @@ public class GameController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("command.do")
+	@RequestMapping(value="command.do", method=RequestMethod.POST)
 	public @ResponseBody CommandResponse command(HttpServletRequest request, @RequestParam(value="command") String command) {
 		User user = (User) request.getSession().getAttribute("authenticated_user");
 		Player player = user.getPlayer();

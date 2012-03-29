@@ -14,6 +14,7 @@ import org.springframework.data.redis.support.collections.DefaultRedisList;
 import org.springframework.data.redis.support.collections.RedisList;
 import org.springframework.stereotype.Service;
 
+import com.smud.model.Inventory;
 import com.smud.model.Room;
 import com.smud.model.User;
 import com.smud.model.Zone;
@@ -108,6 +109,7 @@ public class RedisRepository {
 		return user;
 	}
 
+
 	private Long findUIDByUserName(String userName) {
 		String key = getUserNameKey(userName);
 		String uid = valueOps.get(key);
@@ -127,5 +129,4 @@ public class RedisRepository {
 		long id = userIdCounter.incrementAndGet();
 		return id;
 	}
-	
-}
+	}
