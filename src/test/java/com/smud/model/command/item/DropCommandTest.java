@@ -72,7 +72,7 @@ public class DropCommandTest {
 		player.enters(room);
 		
 		Properties textProperties = new Properties();
-		textProperties.put("item.item.name", "item name");
+		textProperties.put("item.1.name", "item name");
 		command.setTextProperties(textProperties);
 		command.execute(player, "item");
 		
@@ -97,7 +97,7 @@ public class DropCommandTest {
 		player.enters(room);
 		
 		Properties textProperties = new Properties();
-		textProperties.put("item.item.name", "item name");
+		textProperties.put("item.1.name", "item name");
 		command.setTextProperties(textProperties);
 		command.execute(player, "item");
 		
