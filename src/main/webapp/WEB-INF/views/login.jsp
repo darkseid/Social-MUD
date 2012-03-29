@@ -24,7 +24,7 @@
 		<label for="user">User:</label>
 		<input type="text" name="user"/>
 		<label for="password">password:</label>
-		<input type="text" name="password"/>		
+		<input type="password" name="password"/>		
 		<input type="submit" value="Login"/>
 	</form>
 </div>

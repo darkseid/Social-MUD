@@ -84,7 +84,7 @@ public class PlayerRepository {
 		player.setId(playerId);
 		player.enters(DEFAULT_ROOM);
 		player.setTitle("Sir. ");
-		player.setName("Gordito");
+		player.setName(user.getName());
 		
 		user.setPlayer(player);
 		
