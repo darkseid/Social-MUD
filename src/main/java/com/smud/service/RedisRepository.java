@@ -18,6 +18,8 @@ import com.smud.model.Room;
 import com.smud.model.User;
 import com.smud.model.Zone;
 import com.smud.model.character.Player;
+import com.smud.service.data.KeyUtils;
+import com.smud.service.data.PlayerRepository;
 
 /**
  * @author rafael
@@ -28,6 +30,7 @@ public class RedisRepository {
 	
 //	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
+	private PlayerRepository playerRepository;
 	
 	private static final Logger LOGGER = Logger.getLogger(RedisRepository.class);
 	
@@ -35,14 +38,10 @@ public class RedisRepository {
 	private static final String ALL_USERS = "users";
 	private static final String USER = "user";
 	
-	
-	private static final String GLOBAL_PLAYER_ID = "global:pid";
-	
 	// global users
 	private RedisList<String> users;
 	
 	private final RedisAtomicLong userIdCounter;
-	private final RedisAtomicLong playerIdCounter;
 	
 	private final ValueOperations<String, String> valueOps;
 	
@@ -55,20 +54,20 @@ public class RedisRepository {
 	private Room DEFAULT_ROOM;
 	
 	@Autowired
-	public RedisRepository(RedisTemplate<String, String> redisTemplate) {
+	public RedisRepository(RedisTemplate<String, String> redisTemplate, PlayerRepository playerRepository) {
 		this.redisTemplate = redisTemplate;
+		this.playerRepository = playerRepository;
 		
 		valueOps = redisTemplate.opsForValue();
 		users = new DefaultRedisList<String>(ALL_USERS, redisTemplate);
 		userIdCounter = new RedisAtomicLong(GLOBAL_UID, redisTemplate.getConnectionFactory());
-		playerIdCounter = new RedisAtomicLong(GLOBAL_PLAYER_ID, redisTemplate.getConnectionFactory());
 		
 	}
 	
 	public User addUser(String userName, String password) {
 		
 		long uid = getUid();
-		String key = getUIDKey(uid);
+		String key = KeyUtils.USER.getKeyFor(uid);
 		
 		BoundHashOperations<String, String, String> boundHashOps = redisTemplate.boundHashOps(key);
 		
@@ -79,17 +78,13 @@ public class RedisRepository {
 		users.addFirst(userName);
 		
 		User user = new User(uid, userName, password);
-		createPlayerForUser(user);
+		playerRepository.createPlayerForUser(user);
 		
 		LOGGER.info("Recorded user " + userName + " with id = " + uid);
 		
 		return user;
 	}
 
-	private String getUIDKey(long uid) {
-		String key = "uid:" + uid;
-		return key;
-	}
 	
 	public User findUser(String userName) {
 		
@@ -99,7 +94,7 @@ public class RedisRepository {
 			return null;
 		}
 		
-		String uidKey = getUIDKey(uid);
+		String uidKey = KeyUtils.USER.getKeyFor(uid);
 		
 		BoundHashOperations<String, String, String> userOps = redisTemplate.boundHashOps(uidKey);
 		User user = new User(uid,  userOps.get("name"),  userOps.get("password"));
@@ -107,28 +102,10 @@ public class RedisRepository {
 		
 		// find his player
 		String playerId = valueOps.get(uidKey + ":player");
-		Player player = findPlayer(Long.valueOf(playerId));
+		Player player = playerRepository.findPlayer(Long.valueOf(playerId));
 		user.setPlayer(player);
 		
 		return user;
-	}
-
-	private Player findPlayer(Long playerId) {
-
-		String playerKey = getPlayerKey(playerId);
-		
-		BoundHashOperations<String, String, String> playerOps = redisTemplate.boundHashOps(playerKey);
-		
-		String title = playerOps.get("title");
-		String currentRoomId = playerOps.get("current_room");
-		
-		Player player = new Player();
-		player.setTitle(title);
-		
-		Room room = getRoom(Integer.valueOf(currentRoomId));
-		player.enters(room);
-		
-		return player;
 	}
 
 	private Long findUIDByUserName(String userName) {
@@ -150,56 +127,5 @@ public class RedisRepository {
 		long id = userIdCounter.incrementAndGet();
 		return id;
 	}
-
 	
-	public void createPlayerForUser(User user) {
-		
-		long playerId = playerIdCounter.incrementAndGet();
-		String playerIdKey = getPlayerKey(playerId);
-		
-		Player player = new Player();
-		player.setId(playerId);
-		player.enters(DEFAULT_ROOM);
-		player.setTitle("Sir. Default");
-
-		user.setPlayer(player);
-		
-		BoundHashOperations<String, String, String> playerOps = redisTemplate.boundHashOps(playerIdKey);
-		
-		playerOps.put("user_id", String.valueOf(player.getId()));
-		playerOps.put("title", player.getTitle());
-		playerOps.put("current_room", String.valueOf(player.getCurrentRoom().getId()));
-		
-		// stores the player_id
-		valueOps.set(getUIDKey(user.getId()) + ":player", String.valueOf(playerId));
-	}
-
-	private String getPlayerKey(long playerId) {
-		String playerIdKey = "player:" + playerId;
-		return playerIdKey;
-	}
-	
-	public void updates(Player player) {
-		
-		String playerKey = getPlayerKey(player.getId());
-		
-		BoundHashOperations<String, String, String> playerOps = redisTemplate.boundHashOps(playerKey);
-		playerOps.put("current_room", String.valueOf(player.getCurrentRoom().getId()));
-		
-		// TODO Other fields
-		
-	}
-
-	private Room getRoom(int roomId) {
-		for ( Room room : zone.getRooms() ) {
-			
-			if (room.getId() == roomId) {
-				return room;
-			}
-			
-		}
-		
-		throw new RuntimeException("Quarto nao encontrado");
-		
-	}
 }
