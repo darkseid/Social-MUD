@@ -5,7 +5,6 @@ package com.smud.service;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -14,10 +13,7 @@ import org.springframework.data.redis.support.collections.DefaultRedisList;
 import org.springframework.data.redis.support.collections.RedisList;
 import org.springframework.stereotype.Service;
 
-import com.smud.model.Inventory;
-import com.smud.model.Room;
 import com.smud.model.User;
-import com.smud.model.Zone;
 import com.smud.model.character.Player;
 import com.smud.service.data.KeyUtils;
 import com.smud.service.data.PlayerRepository;
@@ -45,14 +41,6 @@ public class RedisRepository {
 	private final RedisAtomicLong userIdCounter;
 	
 	private final ValueOperations<String, String> valueOps;
-	
-	@Autowired
-	private Zone zone;
-	
-	@Autowired
-	@Qualifier(value="room3000")
-	// TODO remove this.
-	private Room DEFAULT_ROOM;
 	
 	@Autowired
 	public RedisRepository(RedisTemplate<String, String> redisTemplate, PlayerRepository playerRepository) {

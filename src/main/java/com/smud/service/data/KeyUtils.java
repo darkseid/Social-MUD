@@ -2,14 +2,10 @@ package com.smud.service.data;
 
 import org.apache.commons.lang.StringUtils;
 
-
 public enum KeyUtils {
 
-	
 	PLAYER("player"),
 	USER("user");
-
-	private static final String SEPARATOR = ":";
 	
 	private String namespace;
 	

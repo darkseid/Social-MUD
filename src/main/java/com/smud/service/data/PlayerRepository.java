@@ -3,15 +3,12 @@
  */
 package com.smud.service.data;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.support.atomic.RedisAtomicLong;
-import org.springframework.data.redis.support.collections.DefaultRedisList;
-import org.springframework.data.redis.support.collections.RedisList;
 import org.springframework.stereotype.Service;
 
 import com.smud.model.Room;
@@ -27,8 +24,6 @@ import com.smud.model.character.Player;
 public class PlayerRepository {
 	
 	private RedisTemplate<String, String> redisTemplate;
-	
-	private static final Logger LOGGER = Logger.getLogger(PlayerRepository.class);
 	
 	private static final String GLOBAL_PLAYER_ID = "global:pid";
 	
