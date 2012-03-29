@@ -50,7 +50,9 @@ public class AuthenticationController {
 	
 	@RequestMapping(value="newUser.do", method=RequestMethod.POST)
 	public ModelAndView addUser(HttpServletRequest request, String userName, String password) {
-		redisRepository.addUser(userName, password);
+		User user = redisRepository.addUser(userName, password);
+		
+		request.getSession().setAttribute("authenticated_user", user);
 		return new ModelAndView("redirect:/game/index.do");
 	}	
 }
