@@ -9,13 +9,14 @@ import com.smud.model.Input;
 import com.smud.model.character.Player;
 import com.smud.model.command.Command;
 import com.smud.model.command.CommandResponse;
+import com.smud.service.data.PlayerRepository;
 
 public class DefaultCommandsService implements CommandsService {
 
 	private List<Command> commands = new ArrayList<Command>();
 	
 	@Autowired
-	private RedisRepository repo;
+	private PlayerRepository playerRepository;
 	
 	@Override
 	public CommandResponse parseCommand(Player player, String input) {
@@ -34,7 +35,7 @@ public class DefaultCommandsService implements CommandsService {
 		// TODO Treat the case of empty command or unknown command
 		// It's currently causing an error in smud.js when parsing the response.
 		
-		repo.updates(player);
+		playerRepository.updatePlayer(player);
 		return commandResponse;
 	}
 	
