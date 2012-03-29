@@ -30,6 +30,7 @@ $("#command").bind("keypress", function(e) {
 	if (code == 13) { //Enter keycode
 		console.log("enter pressed");
 		SMUD.sendCommand();
+		$("#board").append("<span class=WHITE>" + $("#command").attr("value") + "</span><br/>");
 		$("#command").val("");
 	}
 });

@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.smud.model.Color;
 import com.smud.model.Input;
 import com.smud.model.character.Player;
 import com.smud.model.command.Command;
 import com.smud.model.command.CommandResponse;
+import com.smud.model.command.Response;
 import com.smud.service.data.PlayerRepository;
 
 public class DefaultCommandsService implements CommandsService {
@@ -31,6 +33,14 @@ public class DefaultCommandsService implements CommandsService {
 				}
 			}
 		}
+		
+		if (commandResponse == null) {
+			commandResponse = new CommandResponse();
+		}
+		
+		commandResponse.addResponse(new Response("", Color.WHITE));
+		//TODO display proper prompt
+		commandResponse.addResponse(new Response("> ", Color.DARK_GREEN));
 		
 		// TODO Treat the case of empty command or unknown command
 		// It's currently causing an error in smud.js when parsing the response.

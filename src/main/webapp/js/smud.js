@@ -16,7 +16,10 @@ var SMUD = SMUD || {};
 				//print results as appended 
 				var response = $.parseJSON(data.responseText);
 				for (var i = 0; i < response.responses.length; i++) {
-					$("#board").append("<span class=" + response.responses[i].color + ">" + response.responses[i].text + "</span>").append("<br/>");
+					$("#board").append("<span class=" + response.responses[i].color + ">" + response.responses[i].text + "</span>");
+					if (i < response.responses.length - 1) {
+						$("#board").append("<br/>");
+					}
 					$("#board").scrollTop($("#board")[0].scrollHeight);
 				}
 			}
