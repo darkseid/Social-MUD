@@ -3,18 +3,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 		
 	<!-- Communication -->
 	<bean id="sayCommand" class="com.smud.model.command.communication.SayCommand"/>
 	<bean id="shoutCommand" class="com.smud.model.command.communication.ShoutCommand"/>
 	
 	<!-- Informative -->
+	<bean id="commandsCommand" class="com.smud.model.command.informative.CommandsCommand">
+	    <property name="commands">
+			<ref bean="commands"/>
+	    </property>
+    </bean>
+	<bean id="inventoryCommand" class="com.smud.model.command.informative.InventoryCommand"/>
 	<bean id="lookCommand" class="com.smud.model.command.informative.LookCommand"/>
 	<bean id="titleCommand" class="com.smud.model.command.informative.TitleCommand"/>
-	<bean id="inventoryCommand" class="com.smud.model.command.informative.InventoryCommand"/>
 	
 	<!-- Item -->
 	<bean id="dropCommand" class="com.smud.model.command.item.DropCommand"/>
@@ -29,25 +36,28 @@
 	<bean id="southCommand" class="com.smud.model.command.movement.SouthCommand"/>
 	<bean id="westCommand" class="com.smud.model.command.movement.WestCommand"/>
 		
+	<util:list id="commands">
+		<!-- Movement commands come first -->
+		<ref bean="eastCommand"/>
+		<ref bean="northCommand"/>
+		<ref bean="southCommand"/>
+		<ref bean="westCommand"/>
+		
+		<!-- Other commands alphabetically ordered -->
+		<ref bean="commandsCommand" />
+		<ref bean="dropCommand"/>
+		<ref bean="getCommand"/>
+		<ref bean="inventoryCommand"/>
+		<ref bean="lookCommand"/>
+		<ref bean="resetCommand"/>
+		<ref bean="sayCommand"/>
+		<ref bean="shoutCommand"/>
+		<ref bean="titleCommand"/>
+	</util:list>
+	
 	<bean id="commandsService" class="com.smud.service.DefaultCommandsService">
 		<property name="commands">
-			<list>
-				<!-- Movement commands come first -->
-				<ref bean="eastCommand"/>
-				<ref bean="northCommand"/>
-				<ref bean="southCommand"/>
-				<ref bean="westCommand"/>
-				
-				<!-- Other commands alphabetically ordered -->
-				<ref bean="dropCommand"/>
-				<ref bean="getCommand"/>
-				<ref bean="inventoryCommand"/>
-				<ref bean="lookCommand"/>
-				<ref bean="resetCommand"/>
-				<ref bean="sayCommand"/>
-				<ref bean="shoutCommand"/>
-				<ref bean="titleCommand"/>
-			</list>
+			<ref bean="commands"/>
 		</property>
 	</bean>
 		
