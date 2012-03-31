@@ -22,9 +22,6 @@ public class AuthenticationController {
 	@Autowired
 	private RedisRepository redisRepository;
 	
-//	@Autowired
-//	private Zone zone30;
-	
 	@RequestMapping("login.do")
 	public ModelAndView login() {
 		return new ModelAndView("login");
@@ -54,5 +51,10 @@ public class AuthenticationController {
 		
 		request.getSession().setAttribute("authenticated_user", user);
 		return new ModelAndView("redirect:/game/index.do");
-	}	
+	}
+	
+	@RequestMapping(value="register.do", method=RequestMethod.GET)
+	public ModelAndView register() {
+		return new ModelAndView("register");
+	}
 }

@@ -9,7 +9,7 @@ public abstract class Character {
 	private long id;
 	private String name;
 	private Room currentRoom;
-	private Inventory inventory;
+	private Inventory inventory = new Inventory();
 	
 	public long getId() {
 		return id;

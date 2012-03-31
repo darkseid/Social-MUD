@@ -11,23 +11,18 @@
 </head>
 <body>
 
-	<div class="login">
-		<h1>Login</h1>
+	<div class="newUser">
 
-		<div class="formError">
-			<c:forEach var="error" items="${errors}">
-				<c:out value="${error.defaultMessage}" />
-			</c:forEach>
-		</div>
+		<h1>Register a new user</h1>
 
-		<form action="/authenticate.do" method="POST">
-			<label for="user">User:</label> <input type="text" name="user" /> <label
-				for="password">password:</label> <input type="password"
-				name="password" /> <input type="submit" value="Login" />
+		<form action="/newUser.do" method="POST">
+			<label for="userName">User name:</label>
+			<input type="text" name="userName" /><br/>
+			<label for="password">Password:</label>
+			<input type="password" name="password" /><br/>
+			<input type="submit" value="Register" />
 		</form>
-	</div>
 
-	<a href="/register.do">Register new user</a>
-	
+	</div>
 </body>
 </html>
