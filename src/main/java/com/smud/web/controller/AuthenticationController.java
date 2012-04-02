@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smud.model.User;
-import com.smud.service.RedisRepository;
+import com.smud.model.character.CharacterClass;
+import com.smud.service.data.RedisRepository;
 
 @Controller
 public class AuthenticationController {
@@ -46,15 +47,29 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value="newUser.do", method=RequestMethod.POST)
-	public ModelAndView addUser(HttpServletRequest request, String userName, String password) {
-		User user = redisRepository.addUser(userName, password);
-		
+	public ModelAndView addUser(HttpServletRequest request, 
+			@RequestParam String userName, 
+			@RequestParam String password, 
+			@RequestParam String className) {
+		CharacterClass characterClass = null;
+		try {
+			characterClass = CharacterClass.valueOf(className);
+		} catch (Exception e) {
+			ModelAndView modelAndView = register();
+			ArrayList<FieldError> errors = new ArrayList<FieldError>();
+			errors.add(new FieldError("user", "className", "Invalid class"));
+			modelAndView.addObject("errors", errors);
+			return modelAndView;
+		}
+		User user = redisRepository.addUser(userName, password, characterClass);
 		request.getSession().setAttribute("authenticated_user", user);
 		return new ModelAndView("redirect:/game/index.do");
 	}
 	
 	@RequestMapping(value="register.do", method=RequestMethod.GET)
 	public ModelAndView register() {
-		return new ModelAndView("register");
+		ModelAndView modelAndView = new ModelAndView("register");
+		modelAndView.addObject("classes", CharacterClass.values());
+		return modelAndView;
 	}
 }

@@ -14,12 +14,23 @@
 	<div class="newUser">
 
 		<h1>Register a new user</h1>
+		
+		<div class="formError">
+			<c:forEach var="error" items="${errors}">
+				<c:out value="${error.defaultMessage}"/>
+			</c:forEach>
+		</div>
 
 		<form action="/newUser.do" method="POST">
 			<label for="userName">User name:</label>
 			<input type="text" name="userName" /><br/>
 			<label for="password">Password:</label>
 			<input type="password" name="password" /><br/>
+			Choose your class:<br/>
+			<c:forEach items="${classes}" var="class">
+				<input type="radio" name="className" value="${class}"/>
+				<label for="className">${class}</label><br />
+			</c:forEach>
 			<input type="submit" value="Register" />
 		</form>
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.smud.service;
+package com.smud.service.data;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,8 @@ import org.springframework.data.redis.support.collections.RedisList;
 import org.springframework.stereotype.Service;
 
 import com.smud.model.User;
+import com.smud.model.character.CharacterClass;
 import com.smud.model.character.Player;
-import com.smud.service.data.KeyUtils;
-import com.smud.service.data.PlayerRepository;
 
 /**
  * @author rafael
@@ -53,7 +52,7 @@ public class RedisRepository {
 		
 	}
 	
-	public User addUser(String userName, String password) {
+	public User addUser(String userName, String password, CharacterClass characterClass) {
 		
 		long uid = getUid();
 		String key = KeyUtils.USER.getKeyFor(uid);
@@ -67,7 +66,7 @@ public class RedisRepository {
 		users.addFirst(userName);
 		
 		User user = new User(uid, userName, password);
-		playerRepository.createPlayerForUser(user);
+		playerRepository.createPlayerForUser(user, characterClass);
 		
 		LOGGER.info("Recorded user " + userName + " with id = " + uid);
 		

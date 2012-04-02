@@ -8,6 +8,8 @@ public abstract class Character {
 
 	private long id;
 	private String name;
+	private CharacterClass characterClass;
+	
 	private Room currentRoom;
 	private Inventory inventory = new Inventory();
 	
@@ -25,6 +27,14 @@ public abstract class Character {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public CharacterClass getCharacterClass() {
+		return characterClass;
+	}
+	
+	public void setCharacterClass(CharacterClass characterClass) {
+		this.characterClass = characterClass;
 	}
 
 	public Room getCurrentRoom() {
