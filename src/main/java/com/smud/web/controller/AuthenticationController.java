@@ -15,13 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.smud.model.User;
 import com.smud.model.character.CharacterClass;
-import com.smud.service.data.RedisRepository;
+import com.smud.service.UserService;
 
 @Controller
 public class AuthenticationController {
 
 	@Autowired
-	private RedisRepository redisRepository;
+	private UserService userService;
 	
 	@RequestMapping("login.do")
 	public ModelAndView login() {
@@ -31,7 +31,7 @@ public class AuthenticationController {
 	@RequestMapping(value="authenticate.do", method=RequestMethod.POST)
 	public ModelAndView authenticate(HttpServletRequest request, @RequestParam(value="user") String userName, @RequestParam(value="password") String password) {
 		
-		User user = redisRepository.findUser(userName);
+		User user = userService.findUser(userName);
 		
 		if (user != null && user.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
@@ -61,7 +61,7 @@ public class AuthenticationController {
 			modelAndView.addObject("errors", errors);
 			return modelAndView;
 		}
-		User user = redisRepository.addUser(userName, password, characterClass);
+		User user = userService.addUser(userName, password, characterClass);
 		request.getSession().setAttribute("authenticated_user", user);
 		return new ModelAndView("redirect:/game/index.do");
 	}

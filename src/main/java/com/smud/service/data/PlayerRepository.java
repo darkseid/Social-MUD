@@ -4,7 +4,6 @@
 package com.smud.service.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -34,11 +33,6 @@ public class PlayerRepository {
 	
 	@Autowired
 	private Zone zone;
-	
-	@Autowired
-	@Qualifier(value="room3000")
-	// TODO remove this.
-	private Room DEFAULT_ROOM;
 	
 	@Autowired
 	public PlayerRepository(RedisTemplate<String, String> redisTemplate) {
@@ -75,19 +69,10 @@ public class PlayerRepository {
 	}
 
 	
-	public void createPlayerForUser(User user, CharacterClass characterClass) {
+	public long addPlayer(User user, Player player) {
 		
 		long playerId = playerIdCounter.incrementAndGet();
 		String playerIdKey = KeyUtils.PLAYER.getKeyFor(playerId);
-		
-		Player player = new Player();
-		player.setId(playerId);
-		player.enters(DEFAULT_ROOM);
-		player.setTitle("the " + characterClass.name().toLowerCase());
-		player.setName(user.getName());
-		player.setCharacterClass(characterClass);
-		
-		user.setPlayer(player);
 		
 		BoundHashOperations<String, String, String> playerOps = redisTemplate.boundHashOps(playerIdKey);
 
@@ -99,6 +84,7 @@ public class PlayerRepository {
 		
 		// stores the player_id
 		valueOps.set(KeyUtils.USER.getKeyFor(user.getId()) + ":player", String.valueOf(playerId));
+		return playerId;
 	}
 	
 	public void updatePlayer(Player player) {

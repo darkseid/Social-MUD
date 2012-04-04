@@ -14,7 +14,6 @@ import org.springframework.data.redis.support.collections.RedisList;
 import org.springframework.stereotype.Service;
 
 import com.smud.model.User;
-import com.smud.model.character.CharacterClass;
 import com.smud.model.character.Player;
 
 /**
@@ -52,25 +51,22 @@ public class RedisRepository {
 		
 	}
 	
-	public User addUser(String userName, String password, CharacterClass characterClass) {
+	public long addUser(User user) {
 		
 		long uid = getUid();
 		String key = KeyUtils.USER.getKeyFor(uid);
 		
 		BoundHashOperations<String, String, String> boundHashOps = redisTemplate.boundHashOps(key);
 		
-		boundHashOps.put("name", userName);
-		boundHashOps.put("password", password);	
-		valueOps.set(getUserNameKey(userName), String.valueOf(uid));
+		boundHashOps.put("name", user.getName());
+		boundHashOps.put("password", user.getPassword());	
+		valueOps.set(getUserNameKey(user.getName()), String.valueOf(uid));
 
-		users.addFirst(userName);
+		users.addFirst(user.getName());
 		
-		User user = new User(uid, userName, password);
-		playerRepository.createPlayerForUser(user, characterClass);
+		LOGGER.info("Recorded user " + user.getName() + " with id = " + uid);
 		
-		LOGGER.info("Recorded user " + userName + " with id = " + uid);
-		
-		return user;
+		return uid;
 	}
 
 	
@@ -116,4 +112,4 @@ public class RedisRepository {
 		long id = userIdCounter.incrementAndGet();
 		return id;
 	}
-	}
+}

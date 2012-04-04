@@ -12,15 +12,21 @@ public class User {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	public User(long id, String name, String password) {
+	public User(String name, String password) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.password = password;
-		
-		//TODO remove it
-		player = new Player();
 	}
+	
+	public User(Long uid, String name, String password) {
+		this(name, password);
+		setId(uid);
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	public long getId() {
 		return id;
 	}

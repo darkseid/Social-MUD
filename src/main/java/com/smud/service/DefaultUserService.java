@@ -1,0 +1,43 @@
+package com.smud.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.smud.model.User;
+import com.smud.model.character.CharacterClass;
+import com.smud.model.character.Player;
+import com.smud.service.data.RedisRepository;
+
+@Service
+public class DefaultUserService implements UserService {
+
+	@Autowired
+	private RedisRepository redisRepository;
+	
+	@Autowired
+	private PlayerService playerService;
+	
+	@Override
+	public User findUser(String userName) {
+		return redisRepository.findUser(userName);
+	}
+
+	@Override
+	public User addUser(String userName, String password, CharacterClass characterClass) {
+		User user = new User(userName, password);
+		long userId = redisRepository.addUser(user);
+		user.setId(userId);
+		Player player = playerService.createPlayerForUser(user, characterClass);
+		user.setPlayer(player);
+		return user;
+	}
+	
+	public void setRedisRepository(RedisRepository redisRepository) {
+		this.redisRepository = redisRepository;
+	}
+	
+	public void setPlayerService(PlayerService playerService) {
+		this.playerService = playerService;
+	}
+
+}
