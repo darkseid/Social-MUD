@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.smud.model.Room;
 import com.smud.model.User;
+import com.smud.model.character.AttributeGenerator;
 import com.smud.model.character.CharacterClass;
 import com.smud.model.character.Player;
 import com.smud.service.data.PlayerRepository;
@@ -24,6 +25,9 @@ public class DefaultPlayerService implements PlayerService {
 	@Qualifier(value="room3000")
 	// TODO remove this.
 	private Room DEFAULT_ROOM;
+	
+	@Autowired
+	private AttributeGenerator attributeGenerator;
 	
 	@Override
 	public Player findPlayer(String playerName) {
@@ -44,6 +48,7 @@ public class DefaultPlayerService implements PlayerService {
 		player.setTitle("the " + characterClass.name().toLowerCase());
 		player.setName(user.getName());
 		player.setCharacterClass(characterClass);
+		attributeGenerator.generateAttributes(player);
 		return player;
 	}
 	

@@ -10,6 +10,7 @@
 	<bean id="textProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
+				<value>/WEB-INF/properties/informative.properties</value>
 				<value>/WEB-INF/properties/items.properties</value>
 				<value>/WEB-INF/properties/monsters.properties</value>
 				<value>/WEB-INF/properties/rooms.properties</value>
@@ -22,5 +23,26 @@
 
 	<!-- redis template definition -->
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" p:connection-factory-ref="jedisConnectionFactory" />
+	
+	<!-- Attribute Priority Strategies -->
+	<bean id="clericAttributePriorityStrategy" class="com.smud.model.character.ClericAttributePriorityStrategy"/>
+	<bean id="mageAttributePriorityStrategy" class="com.smud.model.character.MageAttributePriorityStrategy"/>
+	<bean id="thiefAttributePriorityStrategy" class="com.smud.model.character.ThiefAttributePriorityStrategy"/>
+	<bean id="warriorAttributePriorityStrategy" class="com.smud.model.character.WarriorAttributePriorityStrategy"/>
+
+	<bean id="attributeGenerator" class="com.smud.model.character.AttributeGenerator">
+		<property name="attributePriorityStrategies">
+			<map>
+				<entry key="CLERIC" value-ref="clericAttributePriorityStrategy"/>
+				<entry key="MAGE" value-ref="mageAttributePriorityStrategy"/>
+				<entry key="THIEF" value-ref="thiefAttributePriorityStrategy"/>
+				<entry key="WARRIOR" value-ref="warriorAttributePriorityStrategy"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="random" class="java.util.Random"/>
+	
+	<bean id="dice" class="com.smud.model.Dice"/>
 
 </beans>

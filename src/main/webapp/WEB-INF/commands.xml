@@ -21,6 +21,7 @@
     </bean>
 	<bean id="inventoryCommand" class="com.smud.model.command.informative.InventoryCommand"/>
 	<bean id="lookCommand" class="com.smud.model.command.informative.LookCommand"/>
+	<bean id="scoreCommand" class="com.smud.model.command.informative.ScoreCommand"/>
 	<bean id="titleCommand" class="com.smud.model.command.informative.TitleCommand"/>
 	
 	<!-- Item -->
@@ -51,6 +52,7 @@
 		<ref bean="lookCommand"/>
 		<ref bean="resetCommand"/>
 		<ref bean="sayCommand"/>
+		<ref bean="scoreCommand"/>
 		<ref bean="shoutCommand"/>
 		<ref bean="titleCommand"/>
 	</util:list>

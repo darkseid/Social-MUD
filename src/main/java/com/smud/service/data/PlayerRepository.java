@@ -55,6 +55,13 @@ public class PlayerRepository {
 		String currentRoomId = playerOps.get("current_room");
 		String characterClassName = playerOps.get("class");
 		
+		String strength = playerOps.get("strength");
+		String dexteriry = playerOps.get("dexterity");
+		String constitution = playerOps.get("constitution");
+		String intelligence = playerOps.get("intelligence");
+		String wisdom = playerOps.get("wisdom");
+		String charisma = playerOps.get("charisma");
+		
 		Player player = new Player();
 		player.setTitle(title);
 		player.setName(name);
@@ -64,6 +71,13 @@ public class PlayerRepository {
 		
 		CharacterClass characterClass = CharacterClass.valueOf(characterClassName);
 		player.setCharacterClass(characterClass);
+		
+		player.setStrength(Integer.parseInt(strength));
+		player.setDexterity(Integer.parseInt(dexteriry));
+		player.setConstitution(Integer.parseInt(constitution));
+		player.setIntelligence(Integer.parseInt(intelligence));
+		player.setWisdom(Integer.parseInt(wisdom));
+		player.setCharisma(Integer.parseInt(charisma));
 		
 		return player;
 	}
@@ -81,6 +95,13 @@ public class PlayerRepository {
 		playerOps.put("name", player.getName());
 		playerOps.put("current_room", String.valueOf(player.getCurrentRoom().getId()));
 		playerOps.put("class", player.getCharacterClass().name());
+		
+		playerOps.put("strength", String.valueOf(player.getStrength()));
+		playerOps.put("dexterity", String.valueOf(player.getDexterity()));
+		playerOps.put("constitution", String.valueOf(player.getConstitution()));
+		playerOps.put("intelligence", String.valueOf(player.getIntelligence()));
+		playerOps.put("wisdom", String.valueOf(player.getWisdom()));
+		playerOps.put("charisma", String.valueOf(player.getCharisma()));
 		
 		// stores the player_id
 		valueOps.set(KeyUtils.USER.getKeyFor(user.getId()) + ":player", String.valueOf(playerId));
