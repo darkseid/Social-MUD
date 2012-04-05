@@ -11,6 +11,7 @@
 	<bean id="monster3062"	class="com.smud.model.definition.MonsterDefinition">
 		<property name="id" value="3062"/>
 		<property name="zone" ref="zone30"/>
+		<property name="level" value="0"/>
 	</bean>	
 	
 </beans>

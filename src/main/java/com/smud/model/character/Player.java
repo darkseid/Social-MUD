@@ -14,7 +14,7 @@ public class Player extends Character {
 
 	
 	private String title;
-	private PlayerClass characterClass;
+	private PlayerClass playerClass;
 	
 	private Queue<Response> responses;
 
@@ -26,12 +26,12 @@ public class Player extends Character {
 		return title;
 	}
 	
-	public PlayerClass getCharacterClass() {
-		return characterClass;
+	public PlayerClass getPlayerClass() {
+		return playerClass;
 	}
 	
-	public void setCharacterClass(PlayerClass characterClass) {
-		this.characterClass = characterClass;
+	public void setPlayerClass(PlayerClass characterClass) {
+		this.playerClass = characterClass;
 	}
 	
 	public void addResponse(Response response) {

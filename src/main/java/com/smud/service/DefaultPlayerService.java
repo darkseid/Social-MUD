@@ -47,7 +47,7 @@ public class DefaultPlayerService implements PlayerService {
 		player.enters(DEFAULT_ROOM);
 		player.setTitle("the " + characterClass.name().toLowerCase());
 		player.setName(user.getName());
-		player.setCharacterClass(characterClass);
+		player.setPlayerClass(characterClass);
 		attributeGenerator.generateAttributes(player);
 		return player;
 	}

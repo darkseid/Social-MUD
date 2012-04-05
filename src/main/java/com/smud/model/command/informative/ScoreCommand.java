@@ -22,7 +22,7 @@ public class ScoreCommand implements Command {
 	public CommandResponse execute(Player player, String parameters) {
 		CommandResponse commandResponse = new CommandResponse();
 		commandResponse.addResponse(new Response(MessageFormat.format(textProperties.getProperty("score.personal.info.text"), player.getName(), player.getTitle()), Color.WHITE));
-		commandResponse.addResponse(new Response(MessageFormat.format(textProperties.getProperty("score.class.text"), player.getCharacterClass().name()), Color.WHITE));
+		commandResponse.addResponse(new Response(MessageFormat.format(textProperties.getProperty("score.class.text"), player.getPlayerClass().name(), player.getLevel()), Color.WHITE));
 		commandResponse.addResponse(new Response(MessageFormat.format(textProperties.getProperty("score.attributes.text"), player.getStrength(), player.getDexterity(), player.getConstitution(), player.getIntelligence(), player.getWisdom(), player.getCharisma()), Color.WHITE));
 		return commandResponse;
 	}

@@ -9,6 +9,8 @@ public class MonsterDefinition {
 	private int id;
 	private Zone zone;
 	
+	private int level;
+	
 	//Attributes
 	private int strength = DEFAULT_ATTRIBUTE_VALUE;
 	private int dexterity = DEFAULT_ATTRIBUTE_VALUE;
@@ -31,6 +33,14 @@ public class MonsterDefinition {
 
 	public void setZone(Zone zone) {
 		this.zone = zone;
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+	
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	public int getStrength() {

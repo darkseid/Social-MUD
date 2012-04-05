@@ -22,7 +22,7 @@ public class AttributeGenerator {
 	public void generateAttributes(Player player) {
 		List<Integer> randomAttributes = generateRandomAttributes();
 		Collections.sort(randomAttributes);
-		AttributePriorityStrategy strategy = attributePriorityStrategies.get(player.getCharacterClass());
+		AttributePriorityStrategy strategy = attributePriorityStrategies.get(player.getPlayerClass());
 		strategy.distributeAttributes(player, randomAttributes);
 	}
 	

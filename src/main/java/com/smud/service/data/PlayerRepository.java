@@ -54,6 +54,7 @@ public class PlayerRepository {
 		String name = playerOps.get("name");
 		String currentRoomId = playerOps.get("current_room");
 		String characterClassName = playerOps.get("class");
+		String level = playerOps.get("level");
 		
 		String strength = playerOps.get("strength");
 		String dexteriry = playerOps.get("dexterity");
@@ -70,7 +71,8 @@ public class PlayerRepository {
 		player.enters(room);
 		
 		PlayerClass characterClass = PlayerClass.valueOf(characterClassName);
-		player.setCharacterClass(characterClass);
+		player.setPlayerClass(characterClass);
+		player.setLevel(Integer.parseInt(level));
 		
 		player.setStrength(Integer.parseInt(strength));
 		player.setDexterity(Integer.parseInt(dexteriry));
@@ -94,7 +96,8 @@ public class PlayerRepository {
 		playerOps.put("title", player.getTitle());
 		playerOps.put("name", player.getName());
 		playerOps.put("current_room", String.valueOf(player.getCurrentRoom().getId()));
-		playerOps.put("class", player.getCharacterClass().name());
+		playerOps.put("class", player.getPlayerClass().name());
+		playerOps.put("level", String.valueOf(player.getLevel()));
 		
 		playerOps.put("strength", String.valueOf(player.getStrength()));
 		playerOps.put("dexterity", String.valueOf(player.getDexterity()));
@@ -113,8 +116,16 @@ public class PlayerRepository {
 		String playerKey = KeyUtils.PLAYER.getKeyFor(player.getId());
 		
 		BoundHashOperations<String, String, String> playerOps = redisTemplate.boundHashOps(playerKey);
+		playerOps.put("title", player.getTitle());
 		playerOps.put("current_room", String.valueOf(player.getCurrentRoom().getId()));
+		playerOps.put("level", String.valueOf(player.getLevel()));
 		
+		playerOps.put("strength", String.valueOf(player.getStrength()));
+		playerOps.put("dexterity", String.valueOf(player.getDexterity()));
+		playerOps.put("constitution", String.valueOf(player.getConstitution()));
+		playerOps.put("intelligence", String.valueOf(player.getIntelligence()));
+		playerOps.put("wisdom", String.valueOf(player.getWisdom()));
+		playerOps.put("charisma", String.valueOf(player.getCharisma()));
 		// TODO Other fields
 		
 	}
