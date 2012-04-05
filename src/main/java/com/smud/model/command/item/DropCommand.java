@@ -70,10 +70,10 @@ public class DropCommand implements Command {
 		
 		currentRoom.addItem(itemToDrop);
 		
-		String successMessageToPlayer = MessageFormat.format("You dropped {0}.", textProperties.getProperty("item." + itemToDrop.getId() + ".name"));
+		String successMessageToPlayer = MessageFormat.format("You dropped {0}.", textProperties.getProperty("item." + itemToDrop.getCode() + ".name"));
 		commandResponse.addResponse(new Response(successMessageToPlayer, Color.WHITE));
 		
-		String successMessageToRoom = MessageFormat.format("{0} dropped {1}.", player.getName(), textProperties.getProperty("item." + itemToDrop.getId() + ".name"));
+		String successMessageToRoom = MessageFormat.format("{0} dropped {1}.", player.getName(), textProperties.getProperty("item." + itemToDrop.getCode() + ".name"));
 		currentRoom.sendToOtherCharacters(new Response(successMessageToRoom, Color.WHITE), player);
 	}
 	

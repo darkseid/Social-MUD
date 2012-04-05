@@ -50,7 +50,7 @@ public class LookCommand implements Command {
 	
 	private void showItems(Player player, CommandResponse commandResponse, List<Item> itemsInRoom) {
 		for (Item item : itemsInRoom) {
-			commandResponse.addResponse(new Response(textProperties.getProperty("item." + item.getId() + ".room.description"), Color.DARK_GREEN));
+			commandResponse.addResponse(new Response(textProperties.getProperty("item." + item.getCode() + ".room.description"), Color.DARK_GREEN));
 		}
 	}
 	

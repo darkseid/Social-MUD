@@ -6,6 +6,8 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.smud.model.Color;
 import com.smud.model.Inventory;
 import com.smud.model.Item;
@@ -14,6 +16,7 @@ import com.smud.model.character.Player;
 import com.smud.model.command.Command;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
+import com.smud.service.data.ItemRepository;
 
 public class GetCommand implements Command {
 
@@ -67,9 +70,9 @@ public class GetCommand implements Command {
 		Inventory inventory = player.getInventory();
 		currentRoom.removeItem(itemToGet);
 		inventory.addItem(itemToGet);
-		String successMessageToPlayer = MessageFormat.format("You get {0}.", textProperties.getProperty("item." + itemToGet.getId() + ".name"));
+		String successMessageToPlayer = MessageFormat.format("You get {0}.", textProperties.getProperty("item." + itemToGet.getCode() + ".name"));
 		commandResponse.addResponse(new Response(successMessageToPlayer, Color.WHITE));
-		String successMessageToRoom = MessageFormat.format("{0} gets {1}.", player.getName(), textProperties.getProperty("item." + itemToGet.getId() + ".name"));
+		String successMessageToRoom = MessageFormat.format("{0} gets {1}.", player.getName(), textProperties.getProperty("item." + itemToGet.getCode() + ".name"));
 		currentRoom.sendToOtherCharacters(new Response(successMessageToRoom, Color.WHITE), player);
 	}
 	

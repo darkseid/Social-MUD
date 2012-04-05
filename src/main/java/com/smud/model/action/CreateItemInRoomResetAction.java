@@ -43,9 +43,10 @@ public class CreateItemInRoomResetAction implements ResetAction<Room> {
 		this.textProperties = textProperties;
 	}
 	
+	// TODO use an ItemFactory
 	private Item createItem() {
 		Item item = new Item();
-		item.setId(itemDefinition.getId());
+		item.setCode(itemDefinition.getId());
 		item.setZone(itemDefinition.getZone());
 		item.setKeywords(createKeywords());
 		return item;
@@ -61,7 +62,7 @@ public class CreateItemInRoomResetAction implements ResetAction<Room> {
 	private int countNumberOfItems(List<Item> itemsInRoom, int id) {
 		int count = 0;
 		for (Item item : itemsInRoom) {
-			if (item.getId() == id){
+			if (item.getCode() == id){
 				count++;
 			}
 		}

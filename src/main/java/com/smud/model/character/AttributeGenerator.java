@@ -42,6 +42,11 @@ public class AttributeGenerator {
 		return attributes;
 	}
 
+	/**
+	 * TODO maybe a javadoc here wouldn`t hurt :p
+	 * 
+	 * @return
+	 */
 	private Integer generateAttribute() {
 		int[] diceResults = dice.roll(4, 6);
 		int attribute = 0;

@@ -31,7 +31,7 @@ public class InventoryCommand implements Command {
 		
 		if (inventoryItems.size() > 0) {
 			for (Item item : inventoryItems) {
-				String itemName = textProperties.getProperty("item." + item.getId() + ".name");
+				String itemName = textProperties.getProperty("item." + item.getCode() + ".name");
 				Response itemResponse = new Response(itemName, Color.WHITE);
 				commandResponse.addResponse(itemResponse);
 			}

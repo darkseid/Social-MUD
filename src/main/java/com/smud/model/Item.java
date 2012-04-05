@@ -5,18 +5,27 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Item {
 
-	private int id;
+	private long id;
+	private int code;
 	
 	private Zone zone;
 	
 	private Keywords keywords;
 	
-	public int getId() {
-		return id;
+	public int getCode() {
+		return code;
 	}
 	
-	public void setId(int id) {
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
 		this.id = id;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
 	}
 	
 	public Zone getZone() {
@@ -41,7 +50,7 @@ public class Item {
 		if (obj instanceof Item) {
 			Item other = (Item) obj;
 			equals = new EqualsBuilder()
-			.append(this.getId(), other.getId())
+			.append(this.getCode(), other.getCode())
 			.isEquals();
 		}
 		return equals;
@@ -50,7 +59,14 @@ public class Item {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-		.append(getId())
+		.append(getCode())
 		.toHashCode();
 	}
+
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", code=" + code + ", keywords=" + keywords
+				+ "]";
+	}
+	
 }

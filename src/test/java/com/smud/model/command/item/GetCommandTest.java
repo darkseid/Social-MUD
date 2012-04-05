@@ -57,7 +57,7 @@ public class GetCommandTest {
 		Keywords keywords = new Keywords();
 		keywords.setWords(Arrays.asList("item"));
 		Item item = new Item();
-		item.setId(1);
+		item.setCode(1);
 		item.setKeywords(keywords);
 		
 		Room room = new Room();
@@ -81,7 +81,7 @@ public class GetCommandTest {
 		Keywords keywords = new Keywords();
 		keywords.setWords(Arrays.asList("item"));
 		Item item = new Item();
-		item.setId(1);
+		item.setCode(1);
 		item.setKeywords(keywords);
 		
 		Room room = new Room();

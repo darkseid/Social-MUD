@@ -5,7 +5,8 @@ import org.apache.commons.lang.StringUtils;
 public enum KeyUtils {
 
 	PLAYER("player"),
-	USER("user");
+	USER("user"),
+	ITEM("item");
 	
 	private String namespace;
 	
