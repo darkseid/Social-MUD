@@ -1,6 +1,6 @@
 package com.smud.model.character;
 
-public enum CharacterClass {
+public enum PlayerClass {
 
 	CLERIC,
 	MAGE,

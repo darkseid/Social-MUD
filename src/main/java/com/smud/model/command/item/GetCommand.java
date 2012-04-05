@@ -6,8 +6,6 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.smud.model.Color;
 import com.smud.model.Inventory;
 import com.smud.model.Item;
@@ -16,7 +14,6 @@ import com.smud.model.character.Player;
 import com.smud.model.command.Command;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
-import com.smud.service.data.ItemRepository;
 
 public class GetCommand implements Command {
 

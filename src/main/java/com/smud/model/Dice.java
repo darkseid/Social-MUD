@@ -21,4 +21,8 @@ public class Dice {
 		return result;
 	}
 	
+	public void setRandom(Random random) {
+		this.random = random;
+	}
+	
 }

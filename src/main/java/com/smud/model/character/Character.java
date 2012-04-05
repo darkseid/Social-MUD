@@ -8,7 +8,6 @@ public abstract class Character {
 
 	private long id;
 	private String name;
-	private CharacterClass characterClass;
 	
 	//Attributes
 	private int strength;
@@ -35,14 +34,6 @@ public abstract class Character {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public CharacterClass getCharacterClass() {
-		return characterClass;
-	}
-	
-	public void setCharacterClass(CharacterClass characterClass) {
-		this.characterClass = characterClass;
 	}
 	
 	public int getStrength() {

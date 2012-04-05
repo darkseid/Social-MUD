@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smud.model.User;
-import com.smud.model.character.CharacterClass;
+import com.smud.model.character.PlayerClass;
 import com.smud.model.character.Player;
 import com.smud.service.data.RedisRepository;
 
@@ -23,7 +23,7 @@ public class DefaultUserService implements UserService {
 	}
 
 	@Override
-	public User addUser(String userName, String password, CharacterClass characterClass) {
+	public User addUser(String userName, String password, PlayerClass characterClass) {
 		User user = new User(userName, password);
 		long userId = redisRepository.addUser(user);
 		user.setId(userId);

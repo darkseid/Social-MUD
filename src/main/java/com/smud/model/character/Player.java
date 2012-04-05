@@ -12,7 +12,10 @@ import com.smud.model.command.Response;
 
 public class Player extends Character {
 
+	
 	private String title;
+	private PlayerClass characterClass;
+	
 	private Queue<Response> responses;
 
 	public void setTitle(String title) {
@@ -21,6 +24,14 @@ public class Player extends Character {
 
 	public String getTitle() {
 		return title;
+	}
+	
+	public PlayerClass getCharacterClass() {
+		return characterClass;
+	}
+	
+	public void setCharacterClass(PlayerClass characterClass) {
+		this.characterClass = characterClass;
 	}
 	
 	public void addResponse(Response response) {

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.smud.model.Room;
 import com.smud.model.User;
 import com.smud.model.Zone;
-import com.smud.model.character.CharacterClass;
+import com.smud.model.character.PlayerClass;
 import com.smud.model.character.Player;
 
 /**
@@ -69,7 +69,7 @@ public class PlayerRepository {
 		Room room = getRoom(Integer.valueOf(currentRoomId));
 		player.enters(room);
 		
-		CharacterClass characterClass = CharacterClass.valueOf(characterClassName);
+		PlayerClass characterClass = PlayerClass.valueOf(characterClassName);
 		player.setCharacterClass(characterClass);
 		
 		player.setStrength(Integer.parseInt(strength));

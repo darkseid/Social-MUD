@@ -17,7 +17,7 @@ public class AttributeGenerator {
 	@Autowired
 	private Dice dice;
 	
-	private Map<CharacterClass, AttributePriorityStrategy> attributePriorityStrategies = new HashMap<CharacterClass, AttributePriorityStrategy>();
+	private Map<PlayerClass, AttributePriorityStrategy> attributePriorityStrategies = new HashMap<PlayerClass, AttributePriorityStrategy>();
 	
 	public void generateAttributes(Player player) {
 		List<Integer> randomAttributes = generateRandomAttributes();
@@ -30,14 +30,14 @@ public class AttributeGenerator {
 		this.dice = dice;
 	}
 	
-	public void setAttributePriorityStrategies(Map<CharacterClass, AttributePriorityStrategy> attributePriorityStrategies) {
+	public void setAttributePriorityStrategies(Map<PlayerClass, AttributePriorityStrategy> attributePriorityStrategies) {
 		this.attributePriorityStrategies = attributePriorityStrategies;
 	}
 	
-	private List<Integer> generateRandomAttributes() {
+	List<Integer> generateRandomAttributes() {
 		List<Integer> attributes = new ArrayList<Integer>();
 		for (int i = 0; i < NUMBER_OF_ATTRIBUTES; i++) {
-			attributes.add(generateAttribute());
+			attributes.add(generateSingleAttribute());
 		}
 		return attributes;
 	}
@@ -47,7 +47,7 @@ public class AttributeGenerator {
 	 * 
 	 * @return
 	 */
-	private Integer generateAttribute() {
+	 Integer generateSingleAttribute() {
 		int[] diceResults = dice.roll(4, 6);
 		int attribute = 0;
 		int smallestResult = Integer.MAX_VALUE;

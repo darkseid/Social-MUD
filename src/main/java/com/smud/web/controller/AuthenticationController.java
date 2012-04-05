@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smud.model.User;
-import com.smud.model.character.CharacterClass;
+import com.smud.model.character.PlayerClass;
 import com.smud.service.UserService;
 
 @Controller
@@ -51,9 +51,9 @@ public class AuthenticationController {
 			@RequestParam String userName, 
 			@RequestParam String password, 
 			@RequestParam String className) {
-		CharacterClass characterClass = null;
+		PlayerClass characterClass = null;
 		try {
-			characterClass = CharacterClass.valueOf(className);
+			characterClass = PlayerClass.valueOf(className);
 		} catch (Exception e) {
 			ModelAndView modelAndView = register();
 			ArrayList<FieldError> errors = new ArrayList<FieldError>();
@@ -69,7 +69,7 @@ public class AuthenticationController {
 	@RequestMapping(value="register.do", method=RequestMethod.GET)
 	public ModelAndView register() {
 		ModelAndView modelAndView = new ModelAndView("register");
-		modelAndView.addObject("classes", CharacterClass.values());
+		modelAndView.addObject("classes", PlayerClass.values());
 		return modelAndView;
 	}
 }

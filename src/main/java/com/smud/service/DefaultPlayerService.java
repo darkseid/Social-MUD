@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.smud.model.Room;
 import com.smud.model.User;
 import com.smud.model.character.AttributeGenerator;
-import com.smud.model.character.CharacterClass;
+import com.smud.model.character.PlayerClass;
 import com.smud.model.character.Player;
 import com.smud.service.data.PlayerRepository;
 import com.smud.service.data.RedisRepository;
@@ -35,14 +35,14 @@ public class DefaultPlayerService implements PlayerService {
 		return user.getPlayer();
 	}
 	
-	public Player createPlayerForUser(User user, CharacterClass characterClass) {
+	public Player createPlayerForUser(User user, PlayerClass characterClass) {
 		Player player = createPlayer(user, characterClass);
 		long playerId = playerRepository.addPlayer(user, player);
 		player.setId(playerId);
 		return player;
 	}
 
-	private Player createPlayer(User user, CharacterClass characterClass) {
+	private Player createPlayer(User user, PlayerClass characterClass) {
 		Player player = new Player();
 		player.enters(DEFAULT_ROOM);
 		player.setTitle("the " + characterClass.name().toLowerCase());
