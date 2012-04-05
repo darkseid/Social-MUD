@@ -11,6 +11,7 @@ import com.smud.model.character.PlayerClass;
 import com.smud.model.character.Player;
 import com.smud.service.data.PlayerRepository;
 import com.smud.service.data.RedisRepository;
+import com.smud.util.StringUtils;
 
 @Service
 public class DefaultPlayerService implements PlayerService {
@@ -46,7 +47,7 @@ public class DefaultPlayerService implements PlayerService {
 		Player player = new Player();
 		player.enters(DEFAULT_ROOM);
 		player.setTitle("the " + characterClass.name().toLowerCase());
-		player.setName(user.getName());
+		player.setName(StringUtils.capitalizeFirstLetter(user.getName()));
 		player.setPlayerClass(characterClass);
 		attributeGenerator.generateAttributes(player);
 		return player;
