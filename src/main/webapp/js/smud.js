@@ -35,7 +35,11 @@ var SMUD = SMUD || {};
 				//print results as appended 
 				var response = $.parseJSON(data.responseText);
 				for (var i = 0; i < response.responses.length; i++) {
-					$("#board").append("<span class=" + response.responses[i].color + ">" + response.responses[i].text + "</span>").append("<br/>");
+					$("#board").append("<span class=" + response.responses[i].color + ">" + 
+							response.responses[i].text.replace(/\[color=(.*?)\](.*?)\[\/color\]/g, "<span class='$1'>$2</span>") + "</span>");
+					if (i < response.responses.length - 1) {
+						$("#board").append("<br/>");
+					}
 					$("#board").scrollTop($("#board")[0].scrollHeight);
 				}
 				setTimeout("SMUD.retrieveMessages()",1000);

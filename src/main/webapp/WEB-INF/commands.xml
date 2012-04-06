@@ -12,6 +12,7 @@
 	<!-- Communication -->
 	<bean id="sayCommand" class="com.smud.model.command.communication.SayCommand"/>
 	<bean id="shoutCommand" class="com.smud.model.command.communication.ShoutCommand"/>
+	<bean id="tellCommand" class="com.smud.model.command.communication.TellCommand"/>
 	
 	<!-- Informative -->
 	<bean id="commandsCommand" class="com.smud.model.command.informative.CommandsCommand">
@@ -54,6 +55,7 @@
 		<ref bean="sayCommand"/>
 		<ref bean="scoreCommand"/>
 		<ref bean="shoutCommand"/>
+		<ref bean="tellCommand"/>
 		<ref bean="titleCommand"/>
 	</util:list>
 	

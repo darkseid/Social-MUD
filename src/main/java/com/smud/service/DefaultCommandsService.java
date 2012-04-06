@@ -45,15 +45,20 @@ public class DefaultCommandsService implements CommandsService {
 			commandResponse = new CommandResponse();
 		}
 		
-		commandResponse.addResponse(new Response("", Color.WHITE));
-		String prompt = MessageFormat.format(textProperties.getProperty("player.prompt"), player.getHitPoints(), player.getManaPoints(), player.getMovementPoints());
-		commandResponse.addResponse(new Response(prompt, Color.WHITE));
+		sendPrompt(player, commandResponse);
 		
 		// TODO Treat the case of empty command or unknown command
 		// It's currently causing an error in smud.js when parsing the response.
 		
 		playerRepository.updatePlayer(player);
 		return commandResponse;
+	}
+
+	@Override
+	public void sendPrompt(Player player, CommandResponse commandResponse) {
+		commandResponse.addResponse(new Response("", Color.WHITE));
+		String prompt = MessageFormat.format(textProperties.getProperty("player.prompt"), player.getHitPoints(), player.getManaPoints(), player.getMovementPoints());
+		commandResponse.addResponse(new Response(prompt, Color.WHITE));
 	}
 	
 	private Input extractCommandAndParameters(String inputCommand) {

@@ -2,7 +2,7 @@ package com.smud.model;
 
 public enum Color {
 
-	BLACK,
+	BLUE, 
 	CYAN,
 	DARK_GREEN,
 	DARK_YELLOW,

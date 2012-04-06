@@ -55,6 +55,9 @@ public class GameController {
 			commandResponse.addResponse(response);
 			response = player.getResponse();
 		}
+		if (commandResponse.getResponses().size() > 0) {
+			commandsService.sendPrompt(player, commandResponse);
+		}
 		return commandResponse;
 	}
 	

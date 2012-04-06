@@ -7,4 +7,6 @@ public interface CommandsService {
 
 	CommandResponse parseCommand(Player player, String command);
 
+	void sendPrompt(Player player, CommandResponse commandResponse);
+
 }

@@ -24,13 +24,21 @@ public class DefaultUserService implements UserService {
 	
 	@Override
 	public User findUser(String userName) {
-		User user = loggedUsers.get(userName);
+		User user = findLoggedUser(userName);
 		if (user == null) {
 			user = redisRepository.findUser(userName);
-			loggedUsers.put(user.getName(), user);
+			loggedUsers.put(user.getName().toLowerCase(), user);
 		}
 		return user;
 	}
+
+	@Override
+	public User findLoggedUser(String userName) {
+		User user = loggedUsers.get(userName.toLowerCase());
+		return user;
+	}
+	
+	
 
 	@Override
 	public User addUser(String userName, String password, PlayerClass characterClass) {
