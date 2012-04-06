@@ -12,6 +12,7 @@
 		<property name="id" value="3062"/>
 		<property name="zone" ref="zone30"/>
 		<property name="level" value="0"/>
+		<property name="maxHitPoints" value="10"/>
 	</bean>	
 	
 </beans>

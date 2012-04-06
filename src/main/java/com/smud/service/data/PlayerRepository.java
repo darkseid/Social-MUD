@@ -63,6 +63,13 @@ public class PlayerRepository {
 		String wisdom = playerOps.get("wisdom");
 		String charisma = playerOps.get("charisma");
 		
+		String maxHitPoints = playerOps.get("max_hit_points");
+		String maxManaPoints = playerOps.get("max_mana_points");
+		String maxMovementPoints = playerOps.get("max_movement_points");
+		String hitPoints = playerOps.get("hit_points");
+		String manaPoints = playerOps.get("mana_points");
+		String movementPoints = playerOps.get("movement_points");
+		
 		Player player = new Player();
 		player.setTitle(title);
 		player.setName(name);
@@ -80,6 +87,13 @@ public class PlayerRepository {
 		player.setIntelligence(Integer.parseInt(intelligence));
 		player.setWisdom(Integer.parseInt(wisdom));
 		player.setCharisma(Integer.parseInt(charisma));
+		
+		player.setMaxHitPoints(Integer.valueOf(maxHitPoints));
+		player.setMaxManaPoints(Integer.parseInt(maxManaPoints));
+		player.setMaxMovementPoints(Integer.parseInt(maxMovementPoints));
+		player.setHitPoints(Integer.parseInt(hitPoints));
+		player.setManaPoints(Integer.parseInt(manaPoints));
+		player.setMovementPoints(Integer.parseInt(movementPoints));
 		
 		return player;
 	}
@@ -106,6 +120,13 @@ public class PlayerRepository {
 		playerOps.put("wisdom", String.valueOf(player.getWisdom()));
 		playerOps.put("charisma", String.valueOf(player.getCharisma()));
 		
+		playerOps.put("max_hit_points", String.valueOf(player.getMaxHitPoints()));
+		playerOps.put("max_mana_points", String.valueOf(player.getMaxManaPoints()));
+		playerOps.put("max_movement_points", String.valueOf(player.getMaxMovementPoints()));
+		playerOps.put("hit_points", String.valueOf(player.getHitPoints()));
+		playerOps.put("mana_points", String.valueOf(player.getManaPoints()));
+		playerOps.put("movement_points", String.valueOf(player.getMovementPoints()));
+		
 		// stores the player_id
 		valueOps.set(KeyUtils.USER.getKeyFor(user.getId()) + ":player", String.valueOf(playerId));
 		return playerId;
@@ -126,6 +147,13 @@ public class PlayerRepository {
 		playerOps.put("intelligence", String.valueOf(player.getIntelligence()));
 		playerOps.put("wisdom", String.valueOf(player.getWisdom()));
 		playerOps.put("charisma", String.valueOf(player.getCharisma()));
+		
+		playerOps.put("max_hit_points", String.valueOf(player.getMaxHitPoints()));
+		playerOps.put("max_mana_points", String.valueOf(player.getMaxManaPoints()));
+		playerOps.put("max_movement_points", String.valueOf(player.getMaxMovementPoints()));
+		playerOps.put("hit_points", String.valueOf(player.getHitPoints()));
+		playerOps.put("mana_points", String.valueOf(player.getManaPoints()));
+		playerOps.put("movement_points", String.valueOf(player.getMovementPoints()));
 		// TODO Other fields
 		
 	}

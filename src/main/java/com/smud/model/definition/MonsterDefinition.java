@@ -19,6 +19,8 @@ public class MonsterDefinition {
 	private int wisdom = DEFAULT_ATTRIBUTE_VALUE;
 	private int charisma = DEFAULT_ATTRIBUTE_VALUE;
 	
+	private int maxHitPoints;
+	
 	public int getId() {
 		return id;
 	}
@@ -91,4 +93,11 @@ public class MonsterDefinition {
 		this.charisma = charisma;
 	}
 	
+	public void setMaxHitPoints(int maxHitPoints) {
+		this.maxHitPoints = maxHitPoints;
+	}
+	
+	public int getMaxHitPoints() {
+		return maxHitPoints;
+	}
 }

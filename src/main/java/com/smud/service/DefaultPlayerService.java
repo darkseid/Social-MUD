@@ -16,6 +16,10 @@ import com.smud.util.StringUtils;
 @Service
 public class DefaultPlayerService implements PlayerService {
 	
+	private static final int INITIAL_HIT_POINTS = 10;
+	private static final int INITIAL_MANA_POINTS = 100;
+	private static final int INITIAL_MOVEMENT_POINTS = 82;
+
 	@Autowired
 	private RedisRepository repository;
 	
@@ -46,10 +50,16 @@ public class DefaultPlayerService implements PlayerService {
 	private Player createPlayer(User user, PlayerClass characterClass) {
 		Player player = new Player();
 		player.enters(DEFAULT_ROOM);
-		player.setTitle("the " + characterClass.name().toLowerCase());
+		player.setTitle("the " + StringUtils.capitalizeFirstLetter(characterClass.name()));
 		player.setName(StringUtils.capitalizeFirstLetter(user.getName()));
 		player.setPlayerClass(characterClass);
 		attributeGenerator.generateAttributes(player);
+		player.setMaxHitPoints(INITIAL_HIT_POINTS);
+		player.setMaxManaPoints(INITIAL_MANA_POINTS);
+		player.setMaxMovementPoints(INITIAL_MOVEMENT_POINTS);
+		player.setHitPoints(INITIAL_HIT_POINTS);
+		player.setManaPoints(INITIAL_MANA_POINTS);
+		player.setMovementPoints(INITIAL_MOVEMENT_POINTS);
 		return player;
 	}
 	

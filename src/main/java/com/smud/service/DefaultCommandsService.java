@@ -1,7 +1,11 @@
 package com.smud.service;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +23,9 @@ public class DefaultCommandsService implements CommandsService {
 	
 	@Autowired
 	private PlayerRepository playerRepository;
+	
+	@Resource(name="textProperties")
+	private Properties textProperties;
 	
 	@Override
 	public CommandResponse parseCommand(Player player, String input) {
@@ -39,8 +46,8 @@ public class DefaultCommandsService implements CommandsService {
 		}
 		
 		commandResponse.addResponse(new Response("", Color.WHITE));
-		//TODO display proper prompt
-		commandResponse.addResponse(new Response("> ", Color.DARK_GREEN));
+		String prompt = MessageFormat.format(textProperties.getProperty("player.prompt"), player.getHitPoints(), player.getManaPoints(), player.getMovementPoints());
+		commandResponse.addResponse(new Response(prompt, Color.WHITE));
 		
 		// TODO Treat the case of empty command or unknown command
 		// It's currently causing an error in smud.js when parsing the response.

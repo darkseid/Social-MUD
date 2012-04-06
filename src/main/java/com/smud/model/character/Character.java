@@ -19,6 +19,14 @@ public abstract class Character {
 	private int wisdom;
 	private int charisma;
 	
+	//Points
+	private int maxHitPoints;
+	private int maxManaPoints;
+	private int maxMovementPoints;
+	private int hitPoints;
+	private int manaPoints;
+	private int movementPoints;
+	
 	private Room currentRoom;
 	private Inventory inventory = new Inventory();
 	
@@ -92,6 +100,54 @@ public abstract class Character {
 
 	public void setCharisma(int charisma) {
 		this.charisma = charisma;
+	}
+	
+	public int getMaxHitPoints() {
+		return maxHitPoints;
+	}
+
+	public void setMaxHitPoints(int maxHitPoints) {
+		this.maxHitPoints = maxHitPoints;
+	}
+
+	public int getMaxManaPoints() {
+		return maxManaPoints;
+	}
+
+	public void setMaxManaPoints(int maxManaPoints) {
+		this.maxManaPoints = maxManaPoints;
+	}
+
+	public int getMaxMovementPoints() {
+		return maxMovementPoints;
+	}
+
+	public void setMaxMovementPoints(int maxMovementPoints) {
+		this.maxMovementPoints = maxMovementPoints;
+	}
+
+	public int getHitPoints() {
+		return hitPoints;
+	}
+
+	public void setHitPoints(int hitPoints) {
+		this.hitPoints = hitPoints;
+	}
+
+	public int getManaPoints() {
+		return manaPoints;
+	}
+
+	public void setManaPoints(int manaPoints) {
+		this.manaPoints = manaPoints;
+	}
+
+	public int getMovementPoints() {
+		return movementPoints;
+	}
+
+	public void setMovementPoints(int movementPoints) {
+		this.movementPoints = movementPoints;
 	}
 
 	public Room getCurrentRoom() {
