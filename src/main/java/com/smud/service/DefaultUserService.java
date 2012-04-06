@@ -1,5 +1,8 @@
 package com.smud.service;
 
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +20,16 @@ public class DefaultUserService implements UserService {
 	@Autowired
 	private PlayerService playerService;
 	
+	private ConcurrentMap<String, User> loggedUsers = new ConcurrentHashMap<String, User>();
+	
 	@Override
 	public User findUser(String userName) {
-		return redisRepository.findUser(userName);
+		User user = loggedUsers.get(userName);
+		if (user == null) {
+			user = redisRepository.findUser(userName);
+			loggedUsers.put(user.getName(), user);
+		}
+		return user;
 	}
 
 	@Override
