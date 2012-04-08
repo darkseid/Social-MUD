@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 		
 	<!-- Communication -->
+	<bean id="gossipCommand" class="com.smud.model.command.communication.GossipCommand"/>
 	<bean id="sayCommand" class="com.smud.model.command.communication.SayCommand"/>
 	<bean id="shoutCommand" class="com.smud.model.command.communication.ShoutCommand"/>
 	<bean id="tellCommand" class="com.smud.model.command.communication.TellCommand"/>
@@ -49,6 +50,7 @@
 		<ref bean="commandsCommand" />
 		<ref bean="dropCommand"/>
 		<ref bean="getCommand"/>
+		<ref bean="gossipCommand"/>
 		<ref bean="inventoryCommand"/>
 		<ref bean="lookCommand"/>
 		<ref bean="resetCommand"/>

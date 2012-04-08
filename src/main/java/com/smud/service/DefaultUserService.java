@@ -1,5 +1,6 @@
 package com.smud.service;
 
+import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -7,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smud.model.User;
-import com.smud.model.character.PlayerClass;
 import com.smud.model.character.Player;
+import com.smud.model.character.PlayerClass;
 import com.smud.service.data.RedisRepository;
 
 @Service
@@ -37,9 +38,12 @@ public class DefaultUserService implements UserService {
 		User user = loggedUsers.get(userName.toLowerCase());
 		return user;
 	}
-	
-	
 
+	@Override
+	public Collection<User> getAllLoggedUsers() {
+		return loggedUsers.values();
+	}
+	
 	@Override
 	public User addUser(String userName, String password, PlayerClass characterClass) {
 		User user = new User(userName, password);
@@ -47,6 +51,7 @@ public class DefaultUserService implements UserService {
 		user.setId(userId);
 		Player player = playerService.createPlayerForUser(user, characterClass);
 		user.setPlayer(player);
+		loggedUsers.put(user.getName(), user);
 		return user;
 	}
 	
