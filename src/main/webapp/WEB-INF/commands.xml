@@ -29,6 +29,7 @@
 	<!-- Item -->
 	<bean id="dropCommand" class="com.smud.model.command.item.DropCommand"/>
 	<bean id="getCommand" class="com.smud.model.command.item.GetCommand"/>
+	<bean id="junkCommand" class="com.smud.model.command.item.JunkCommand"/>
 	
 	<!-- Admin -->
 	<bean id="resetCommand" class="com.smud.model.command.admin.ResetCommand"/>
@@ -52,6 +53,7 @@
 		<ref bean="getCommand"/>
 		<ref bean="gossipCommand"/>
 		<ref bean="inventoryCommand"/>
+		<ref bean="junkCommand"/>
 		<ref bean="lookCommand"/>
 		<ref bean="resetCommand"/>
 		<ref bean="sayCommand"/>

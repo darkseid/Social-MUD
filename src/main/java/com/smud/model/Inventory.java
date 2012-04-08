@@ -18,4 +18,15 @@ public class Inventory {
 	public List<Item> getItems() {
 		return items;
 	}
+	
+	public Item findItem(String keyword) {
+		Item itemFound = null;
+		for (Item item : items) {
+			if (item.getKeywords().match(keyword)) {
+				itemFound = item;
+				break;
+			}
+		}
+		return itemFound;
+	}
 }

@@ -1,7 +1,6 @@
 package com.smud.model.command.item;
 
 import java.text.MessageFormat;
-import java.util.List;
 import java.util.Properties;
 
 import javax.annotation.Resource;
@@ -32,7 +31,7 @@ public class DropCommand implements Command {
 		} else {
 			String inputKeyword = parameters.split(" ")[TARGET_ITEM_KEYWORD];
 			Inventory inventory = player.getInventory();
-			Item itemToDrop = findItemInInventory(inputKeyword, inventory);
+			Item itemToDrop = inventory.findItem(inputKeyword);
 			if (itemToDrop != null) {
 				Room currentRoom = player.getCurrentRoom();
 				dropItem(player, commandResponse, currentRoom, itemToDrop);
@@ -52,18 +51,6 @@ public class DropCommand implements Command {
 		this.textProperties = textProperties;
 	}
 	
-	private Item findItemInInventory(String inputKeyword, Inventory inventory) {
-		Item itemToDrop = null;
-		List<Item> roomItems = inventory.getItems();
-		for (Item item : roomItems) {
-			if (item.getKeywords().match(inputKeyword)) {
-				itemToDrop = item;
-				break;
-			}
-		}
-		return itemToDrop;
-	}
-
 	private void dropItem(Player player, CommandResponse commandResponse, Room currentRoom, Item itemToDrop) {
 		Inventory inventory = player.getInventory();
 		inventory.removeItem(itemToDrop);
