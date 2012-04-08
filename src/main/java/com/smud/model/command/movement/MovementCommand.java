@@ -1,8 +1,11 @@
 package com.smud.model.command.movement;
 
+import java.text.MessageFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.smud.model.Color;
+import com.smud.model.Direction;
 import com.smud.model.Room;
 import com.smud.model.character.Player;
 import com.smud.model.command.Command;
@@ -17,13 +20,15 @@ public abstract class MovementCommand implements Command {
 	
 	@Override
 	public CommandResponse execute(Player player, String parameters) {
-		Room destinationRoom = getDestinationRoom(player);
-		
+		Room currentRoom = player.getCurrentRoom();
+		Direction direction = getDirection();
+		Room destinationRoom = currentRoom.getRoomExit(direction);
 		if (destinationRoom != null) {
+			String playerMovedMessage = MessageFormat.format("{0} goes to the {1}.", player.getName(), direction.name().toLowerCase());
+			currentRoom.sendToOtherCharacters(new Response(playerMovedMessage, Color.WHITE), player);
 			player.enters(destinationRoom);
-			
-			// TODO must update the user's room
-			
+			String playerArrivedMessage = MessageFormat.format("{0} arrived.", player.getName());
+			destinationRoom.sendToOtherCharacters(new Response(playerArrivedMessage, Color.WHITE), player);
 			return lookCommand.execute(player, parameters);
 		} else {
 			CommandResponse commandResponse = new CommandResponse();
@@ -33,7 +38,7 @@ public abstract class MovementCommand implements Command {
 		}
 	}
 	
-	protected abstract Room getDestinationRoom(Player player);
+	protected abstract Direction getDirection();
 
 	public void setLookCommand(LookCommand lookCommand) {
 		this.lookCommand = lookCommand;

@@ -1,17 +1,14 @@
 package com.smud.model.command.movement;
 
 import com.smud.model.Direction;
-import com.smud.model.Room;
-import com.smud.model.character.Player;
 
 public class EastCommand extends MovementCommand {
 
 	private static final String COMMAND_NAME = "east";
 	
 	@Override
-	protected Room getDestinationRoom(Player player) {
-		Room room = player.getCurrentRoom();
-		return room.getRoomExit(Direction.EAST);
+	protected Direction getDirection() {
+		return Direction.EAST;
 	}
 
 	@Override
