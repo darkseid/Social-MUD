@@ -1,3 +1,6 @@
+SocialMUD[![Build Status](https://secure.travis-ci.org/darkseid/Social-MUD.png?branch=master)](http://travis-ci.org/darkseid/Social-MUD)
+========
+
 1. TODO - Description of the project
 
 2. Installation instructions:
