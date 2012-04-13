@@ -7,7 +7,7 @@
          
 	<display-name>MUD</display-name>
 	
-	<filter>
+<!-- 	<filter>
 	    <filter-name>authenticationFilter</filter-name>
 	    <filter-class>com.smud.web.controller.filter.AuthenticationFilter</filter-class>
 	</filter>
@@ -15,7 +15,7 @@
 	<filter-mapping>
 	   <filter-name>authenticationFilter</filter-name>
 	   <url-pattern>/game/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 	<!-- Handles all requests into the application -->
 	<servlet>
@@ -32,12 +32,7 @@
 
 	<servlet-mapping>
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-		<url-pattern>/*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-    <servlet-mapping>
-        <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>	
 
 </web-app>

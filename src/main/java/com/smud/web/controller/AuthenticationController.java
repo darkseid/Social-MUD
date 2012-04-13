@@ -2,6 +2,7 @@ package com.smud.web.controller;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smud.model.User;
+import com.smud.model.character.Player;
 import com.smud.model.character.PlayerClass;
+import com.smud.service.PlayerService;
 import com.smud.service.UserService;
+import com.smud.service.data.RedisRepository;
+import com.smud.util.SecurityContext;
 
 @Controller
 public class AuthenticationController {
@@ -23,7 +28,11 @@ public class AuthenticationController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("login.do")
+	@Inject
+	private PlayerService playerService;
+	
+	
+//	@RequestMapping("login.do")
 	public ModelAndView login() {
 		return new ModelAndView("login");
 	}
@@ -45,6 +54,18 @@ public class AuthenticationController {
 			return login();
 		}
 	}
+	
+	@RequestMapping(value="login.do", method=RequestMethod.GET)
+	public ModelAndView login(HttpServletRequest request) {
+		
+		User user = SecurityContext.getCurrentUser();
+		Player player = playerService.createPlayerForUser(user, PlayerClass.MAGE);
+		
+		user.setPlayer(player);
+		
+		return new ModelAndView("redirect:/game/index.do");
+	}
+	
 	
 	@RequestMapping(value="newUser.do", method=RequestMethod.POST)
 	public ModelAndView addUser(HttpServletRequest request, 

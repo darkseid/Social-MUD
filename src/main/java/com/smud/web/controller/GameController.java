@@ -16,11 +16,16 @@ import com.smud.model.character.Player;
 import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
 import com.smud.service.CommandsService;
+import com.smud.service.data.RedisRepository;
+import com.smud.util.SecurityContext;
 
 @Controller
 @RequestMapping("/game/")
 public class GameController {
 
+	@Autowired
+	private RedisRepository repo;
+	
 	@Autowired
 	private CommandsService commandsService;
 	
@@ -40,7 +45,12 @@ public class GameController {
 	
 	@RequestMapping(value="command.do", method=RequestMethod.POST)
 	public @ResponseBody CommandResponse command(HttpServletRequest request, @RequestParam(value="command") String command) {
-		User user = (User) request.getSession().getAttribute("authenticated_user");
+		
+		long id = SecurityContext.getCurrentUser().getId();
+		User user = repo.findUserById(id);
+		
+		
+//		User user = (User) request.getSession().getAttribute("authenticated_user");
 		Player player = user.getPlayer();
 		
 		CommandResponse commandResponse = commandsService.parseCommand(player, command);
@@ -50,7 +60,8 @@ public class GameController {
 	
 	@RequestMapping("retrieveMessages.do")
 	public @ResponseBody CommandResponse retrieveMessage(HttpServletRequest request) {
-		User user =  (User) request.getSession().getAttribute("authenticated_user");
+		long id = SecurityContext.getCurrentUser().getId();
+		User user = repo.findUserById(id);
 		
 		Player player = user.getPlayer();
 		

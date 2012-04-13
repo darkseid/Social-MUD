@@ -78,6 +78,10 @@ public class RedisRepository {
 			return null;
 		}
 		
+		return findUserById(uid);
+	}
+
+	public User findUserById(Long uid) {
 		String uidKey = KeyUtils.USER.getKeyFor(uid);
 		
 		BoundHashOperations<String, String, String> userOps = redisTemplate.boundHashOps(uidKey);

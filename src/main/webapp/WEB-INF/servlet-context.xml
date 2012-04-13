@@ -23,9 +23,6 @@
 		<bean class="com.smud.web.controller.filter.UserInterceptor"/>
 	</mvc:interceptors>
 
-    <mvc:view-controller path="/signin"/>  
-    <mvc:view-controller path="/connect"/>  
-
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	

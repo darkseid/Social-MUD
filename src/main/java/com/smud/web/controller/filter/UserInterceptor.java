@@ -25,6 +25,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.smud.model.User;
+import com.smud.model.character.Player;
 import com.smud.util.SecurityContext;
 
 /**
@@ -74,6 +75,8 @@ public final class UserInterceptor extends HandlerInterceptorAdapter {
 //		SecurityContext.setCurrentUser(new User(userId));
 		User user = new User(Long.parseLong(userId), null, null);
 		SecurityContext.setCurrentUser(user);
+		
+//		request.getSession().setAttribute("authenticated_user", user);
 	}
 
 	private void handleSignOut(HttpServletRequest request, HttpServletResponse response) {

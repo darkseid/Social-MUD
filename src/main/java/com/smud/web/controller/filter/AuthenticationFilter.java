@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.smud.model.User;
+import com.smud.util.SecurityContext;
 
 public class AuthenticationFilter implements Filter {
 
@@ -23,10 +24,20 @@ public class AuthenticationFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		
+
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		
 		HttpSession session = httpServletRequest.getSession();
+		
+		// TODO melhorar isso
+		if (SecurityContext.userSignedIn()) {
+			session.setAttribute("authenticated_user", SecurityContext.getCurrentUser());
+			chain.doFilter(request, response);
+		}
+		
+		
 		User authenticatedUser = (User) session.getAttribute("authenticated_user");
 		if (authenticatedUser == null) {
 			httpServletResponse.sendRedirect("/login.do");

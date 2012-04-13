@@ -3,61 +3,53 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
         http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">   
-        
-
-	<bean id="connectionFactoryLocator"
-		class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
-		<property name="connectionFactories">
-			<list>
-				<bean
-					class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
-                    <constructor-arg value="286405761439436" />
-                    <constructor-arg value="99261db99bfb360a8d4c70d05a6feb6b" />
-<!-- 					<constructor-arg value="${facebook.clientId}" />
-					<constructor-arg value="${facebook.clientSecret}" /> -->
-				</bean>
-			</list>
-		</property>
-	</bean>
-
-    <bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors" 
-            factory-method="noOpText" />
-
-	<bean id="usersConnectionRepository"
-		class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
- 		<constructor-arg ref="dataSource" />
-		<constructor-arg ref="connectionFactoryLocator" />
-		<constructor-arg ref="textEncryptor" />
-	</bean>
 	
- <!--    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource"> -->
-    <bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource" destroy-method="close" id="dataSource">
-	        <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-	        <property name="url" value="jdbc\:hsqldb\:mem\:social-mud" />
-	        <property name="username" value="sa" />
-	        <property name="password" value="" />
-	</bean>
-
-    <jdbc:embedded-database id="dataSource" type="H2" >
-        <jdbc:script location="classpath:JdbcUsersConnectionRepository.sql"/>
+	<!-- Allows users to sign-in with their provider accounts.  -->
+    <bean class="org.springframework.social.connect.web.ProviderSignInController">
+        <constructor-arg ref="connectionFactoryLocator" />
+        <constructor-arg ref="usersConnectionRepository" />     
+        <constructor-arg>
+            <bean class="com.smud.web.controller.filter.SimpleSignInAdapter" />
+        </constructor-arg>
+        <property name="applicationUrl" value="http://rafaelmanoel.com.br:8080" />
+    </bean>
         
+    <mvc:view-controller path="/signin" />
+    <mvc:view-controller path="/signout" />
+    
+    
+    <!-- resources exclusions from servlet mapping -->
+<mvc:resources mapping="/css/**" location="/css/" />
+<mvc:resources mapping="/js/**" location="/js/" />
+    
+    <!-- JDBC STUFF -->
+    <!-- Configures transaction management around @Transactional components -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+        
+    <!-- Local, JDBC-based TransactionManager -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- Shared JDBC Data Access Template -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource" />
+    </bean>
+
+    <!-- Embedded database for storing connections -->
+    <jdbc:embedded-database id="dataSource" type="H2">
+        <jdbc:script location="classpath:/org/springframework/social/connect/jdbc/JdbcUsersConnectionRepository.sql" />
     </jdbc:embedded-database>
-
-	<bean id="connectionRepository" factory-method="createConnectionRepository"
-		factory-bean="usersConnectionRepository" scope="request">
-        <constructor-arg value="#{request.userPrincipal.name}" />
-        <!-- <constructor-arg value="RafaTESTE" /> -->
-		<aop:scoped-proxy proxy-target-class="false" />
-	</bean>
-
-	<bean class="org.springframework.social.connect.web.ProviderSignInController">
-		<!-- relies on by-type autowiring for the constructor-args -->
-		<property name="applicationUrl" value="http://rafaelmanoel.com.br:8080" />
-	</bean>
-	
-	<bean class="com.smud.web.controller.filter.SimpleSignInAdapter"/>
+    
+    <!-- Configures Spring Social -->
+    <bean class="com.smud.util.SocialConfig" />   
+    <!-- Configures External Property Resolution -->
+    <import resource="properties.xml" />
 </beans>
