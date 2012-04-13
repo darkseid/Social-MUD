@@ -20,11 +20,16 @@
 	<mvc:interceptors>
 		<!-- Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de -->
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+		<bean class="com.smud.web.controller.filter.UserInterceptor"/>
 	</mvc:interceptors>
+
+    <mvc:view-controller path="/signin"/>  
+    <mvc:view-controller path="/connect"/>  
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
+    <import resource="social-context.xml"/>
 	<import resource="beans.xml"/>
 	<import resource="commands.xml"/>
 	<import resource="items.xml"/>

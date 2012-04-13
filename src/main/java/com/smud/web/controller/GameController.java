@@ -25,6 +25,12 @@ public class GameController {
 	private CommandsService commandsService;
 	
 	private Logger LOGGER = Logger.getLogger(GameController.class);
+
+	@RequestMapping("connect.do")
+	public ModelAndView connect(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("connect");
+		return modelAndView;
+	}
 	
 	@RequestMapping("index.do")
 	public ModelAndView hi(HttpServletRequest request) {
