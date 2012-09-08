@@ -1,4 +1,4 @@
-package com.smud.model;
+package com.smud.model.item;
 
 import java.util.ArrayList;
 import java.util.List;

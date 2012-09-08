@@ -21,6 +21,7 @@
 			<ref bean="commands"/>
 	    </property>
     </bean>
+    <bean id="equipmentCommand" class="com.smud.model.command.informative.EquipmentCommand"/>
 	<bean id="inventoryCommand" class="com.smud.model.command.informative.InventoryCommand"/>
 	<bean id="lookCommand" class="com.smud.model.command.informative.LookCommand"/>
 	<bean id="scoreCommand" class="com.smud.model.command.informative.ScoreCommand"/>
@@ -30,6 +31,7 @@
 	<bean id="dropCommand" class="com.smud.model.command.item.DropCommand"/>
 	<bean id="getCommand" class="com.smud.model.command.item.GetCommand"/>
 	<bean id="junkCommand" class="com.smud.model.command.item.JunkCommand"/>
+	<bean id="wieldCommand" class="com.smud.model.command.item.WieldCommand"/>
 	
 	<!-- Admin -->
 	<bean id="resetCommand" class="com.smud.model.command.admin.ResetCommand"/>
@@ -50,6 +52,7 @@
 		<!-- Other commands alphabetically ordered -->
 		<ref bean="commandsCommand" />
 		<ref bean="dropCommand"/>
+		<ref bean="equipmentCommand"/>
 		<ref bean="getCommand"/>
 		<ref bean="gossipCommand"/>
 		<ref bean="inventoryCommand"/>
@@ -61,6 +64,7 @@
 		<ref bean="shoutCommand"/>
 		<ref bean="tellCommand"/>
 		<ref bean="titleCommand"/>
+		<ref bean="wieldCommand"/>
 	</util:list>
 	
 	<bean id="commandsService" class="com.smud.service.DefaultCommandsService">

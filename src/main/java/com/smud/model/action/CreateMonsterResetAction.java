@@ -5,11 +5,11 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 
-import com.smud.model.Inventory;
 import com.smud.model.ResetAction;
 import com.smud.model.Room;
 import com.smud.model.character.Monster;
 import com.smud.model.definition.MonsterDefinition;
+import com.smud.model.item.Inventory;
 
 public class CreateMonsterResetAction implements ResetAction<Room> {
 	

@@ -1,7 +1,10 @@
-package com.smud.model;
+package com.smud.model.item;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import com.smud.model.Keywords;
+import com.smud.model.Zone;
 
 public class Item {
 
@@ -11,6 +14,8 @@ public class Item {
 	private Zone zone;
 	
 	private Keywords keywords;
+	
+	private ItemWearPosition itemWearPosition;
 	
 	public int getCode() {
 		return code;
@@ -44,6 +49,14 @@ public class Item {
 		this.keywords = keywords;
 	}
 	
+	public void setItemWearPosition(ItemWearPosition itemWearPosition) {
+		this.itemWearPosition = itemWearPosition;
+	}
+	
+	public ItemWearPosition getItemWearPosition() {
+		return itemWearPosition;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		boolean equals = false;
@@ -51,6 +64,7 @@ public class Item {
 			Item other = (Item) obj;
 			equals = new EqualsBuilder()
 			.append(this.getCode(), other.getCode())
+			.append(this.getItemWearPosition(), other.getItemWearPosition())
 			.isEquals();
 		}
 		return equals;
@@ -60,6 +74,7 @@ public class Item {
 	public int hashCode() {
 		return new HashCodeBuilder()
 		.append(getCode())
+		.append(getItemWearPosition())
 		.toHashCode();
 	}
 
@@ -67,6 +82,10 @@ public class Item {
 	public String toString() {
 		return "Item [id=" + id + ", code=" + code + ", keywords=" + keywords
 				+ "]";
+	}
+
+	public boolean isWieldable() {
+		return ItemWearPosition.WIELD.equals(itemWearPosition);
 	}
 	
 }

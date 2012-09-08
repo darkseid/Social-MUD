@@ -9,7 +9,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.support.atomic.RedisAtomicLong;
 import org.springframework.stereotype.Service;
 
-import com.smud.model.Item;
+import com.smud.model.item.Item;
 
 @Service
 public class ItemRepository implements Repository<Item> {

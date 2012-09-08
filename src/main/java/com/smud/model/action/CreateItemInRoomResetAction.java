@@ -6,11 +6,11 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 
-import com.smud.model.Item;
 import com.smud.model.Keywords;
 import com.smud.model.ResetAction;
 import com.smud.model.Room;
 import com.smud.model.definition.ItemDefinition;
+import com.smud.model.item.Item;
 
 public class CreateItemInRoomResetAction implements ResetAction<Room> {
 
@@ -49,6 +49,7 @@ public class CreateItemInRoomResetAction implements ResetAction<Room> {
 		item.setCode(itemDefinition.getId());
 		item.setZone(itemDefinition.getZone());
 		item.setKeywords(createKeywords());
+		item.setItemWearPosition(itemDefinition.getItemWearPosition());
 		return item;
 	}
 	

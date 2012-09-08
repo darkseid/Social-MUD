@@ -9,6 +9,7 @@ import com.smud.model.character.Character;
 import com.smud.model.character.Monster;
 import com.smud.model.character.Player;
 import com.smud.model.command.Response;
+import com.smud.model.item.Item;
 
 public class Room implements Resetable {
 

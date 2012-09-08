@@ -42,6 +42,7 @@
 			<list>
 				<ref bean="createMonsterFidoAction"/>
 				<ref bean="createItemFountainAction"/>
+				<ref bean="createItemAxeAction"/>
 			</list>
 		</property>
 	</bean>

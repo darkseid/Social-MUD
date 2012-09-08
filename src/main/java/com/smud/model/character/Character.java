@@ -1,8 +1,9 @@
 package com.smud.model.character;
 
-import com.smud.model.Inventory;
 import com.smud.model.Room;
 import com.smud.model.command.Response;
+import com.smud.model.item.Equipment;
+import com.smud.model.item.Inventory;
 
 public abstract class Character {
 
@@ -29,6 +30,7 @@ public abstract class Character {
 	
 	private Room currentRoom;
 	private Inventory inventory = new Inventory();
+	private Equipment equipment = new Equipment();
 	
 	public long getId() {
 		return id;
@@ -168,6 +170,14 @@ public abstract class Character {
 	
 	public Inventory getInventory() {
 		return inventory;
+	}
+	
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
+	}
+	
+	public Equipment getEquipment() {
+		return equipment;
 	}
 	
 	public abstract void addResponse(Response response);
