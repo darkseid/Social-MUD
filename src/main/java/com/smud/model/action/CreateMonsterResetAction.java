@@ -46,12 +46,12 @@ public class CreateMonsterResetAction implements ResetAction<Room> {
 		Monster monster = new Monster();
 		monster.setId(monsterDefinition.getId());
 		monster.setLevel(monsterDefinition.getLevel());
-		monster.setStrength(monsterDefinition.getStrength());
+		monster.setBaseStrength(monsterDefinition.getStrength());
 		monster.setBaseDexterity(monsterDefinition.getDexterity());
-		monster.setConstitution(monsterDefinition.getConstitution());
-		monster.setIntelligence(monsterDefinition.getIntelligence());
-		monster.setWisdom(monsterDefinition.getWisdom());
-		monster.setCharisma(monsterDefinition.getCharisma());
+		monster.setBaseConstitution(monsterDefinition.getConstitution());
+		monster.setBaseIntelligence(monsterDefinition.getIntelligence());
+		monster.setBaseWisdom(monsterDefinition.getWisdom());
+		monster.setBaseCharisma(monsterDefinition.getCharisma());
 		monster.setMaxHitPoints(monsterDefinition.getMaxHitPoints());
 		monster.setMaxManaPoints(10);
 		monster.setMaxMovementPoints(50);

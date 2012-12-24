@@ -81,12 +81,12 @@ public class PlayerRepository {
 		player.setPlayerClass(characterClass);
 		player.setLevel(Integer.parseInt(level));
 		
-		player.setStrength(Integer.parseInt(strength));
+		player.setBaseStrength(Integer.parseInt(strength));
 		player.setBaseDexterity(Integer.parseInt(dexteriry));
-		player.setConstitution(Integer.parseInt(constitution));
-		player.setIntelligence(Integer.parseInt(intelligence));
-		player.setWisdom(Integer.parseInt(wisdom));
-		player.setCharisma(Integer.parseInt(charisma));
+		player.setBaseConstitution(Integer.parseInt(constitution));
+		player.setBaseIntelligence(Integer.parseInt(intelligence));
+		player.setBaseWisdom(Integer.parseInt(wisdom));
+		player.setBaseCharisma(Integer.parseInt(charisma));
 		
 		player.setMaxHitPoints(Integer.valueOf(maxHitPoints));
 		player.setMaxManaPoints(Integer.parseInt(maxManaPoints));
@@ -113,12 +113,12 @@ public class PlayerRepository {
 		playerOps.put("class", player.getPlayerClass().name());
 		playerOps.put("level", String.valueOf(player.getLevel()));
 		
-		playerOps.put("strength", String.valueOf(player.getStrength()));
+		playerOps.put("strength", String.valueOf(player.getBaseStrength()));
 		playerOps.put("dexterity", String.valueOf(player.getBaseDexterity()));
-		playerOps.put("constitution", String.valueOf(player.getConstitution()));
-		playerOps.put("intelligence", String.valueOf(player.getIntelligence()));
-		playerOps.put("wisdom", String.valueOf(player.getWisdom()));
-		playerOps.put("charisma", String.valueOf(player.getCharisma()));
+		playerOps.put("constitution", String.valueOf(player.getBaseConstitution()));
+		playerOps.put("intelligence", String.valueOf(player.getBaseIntelligence()));
+		playerOps.put("wisdom", String.valueOf(player.getBaseWisdom()));
+		playerOps.put("charisma", String.valueOf(player.getBaseCharisma()));
 		
 		playerOps.put("max_hit_points", String.valueOf(player.getMaxHitPoints()));
 		playerOps.put("max_mana_points", String.valueOf(player.getMaxManaPoints()));
@@ -141,12 +141,12 @@ public class PlayerRepository {
 		playerOps.put("current_room", String.valueOf(player.getCurrentRoom().getId()));
 		playerOps.put("level", String.valueOf(player.getLevel()));
 		
-		playerOps.put("strength", String.valueOf(player.getStrength()));
+		playerOps.put("strength", String.valueOf(player.getBaseStrength()));
 		playerOps.put("dexterity", String.valueOf(player.getBaseDexterity()));
-		playerOps.put("constitution", String.valueOf(player.getConstitution()));
-		playerOps.put("intelligence", String.valueOf(player.getIntelligence()));
-		playerOps.put("wisdom", String.valueOf(player.getWisdom()));
-		playerOps.put("charisma", String.valueOf(player.getCharisma()));
+		playerOps.put("constitution", String.valueOf(player.getBaseConstitution()));
+		playerOps.put("intelligence", String.valueOf(player.getBaseIntelligence()));
+		playerOps.put("wisdom", String.valueOf(player.getBaseWisdom()));
+		playerOps.put("charisma", String.valueOf(player.getBaseCharisma()));
 		
 		playerOps.put("max_hit_points", String.valueOf(player.getMaxHitPoints()));
 		playerOps.put("max_mana_points", String.valueOf(player.getMaxManaPoints()));

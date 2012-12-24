@@ -58,10 +58,14 @@ public abstract class Character {
 	}
 	
 	public int getStrength() {
+		return getBaseStrength() + equipment.getApplyModifier(ItemApplies.APPLY_STR);
+	}
+	
+	public int getBaseStrength() {
 		return strength;
 	}
 
-	public void setStrength(int strength) {
+	public void setBaseStrength(int strength) {
 		this.strength = strength;
 	}
 
@@ -76,36 +80,52 @@ public abstract class Character {
 	public void setBaseDexterity(int dexterity) {
 		this.dexterity = dexterity;
 	}
-
+	
 	public int getConstitution() {
+		return getBaseConstitution() + equipment.getApplyModifier(ItemApplies.APPLY_CON);
+	}
+
+	public int getBaseConstitution() {
 		return constitution;
 	}
 
-	public void setConstitution(int constitution) {
+	public void setBaseConstitution(int constitution) {
 		this.constitution = constitution;
 	}
-
+	
 	public int getIntelligence() {
+		return getBaseIntelligence() + equipment.getApplyModifier(ItemApplies.APPLY_INT);
+	}
+
+	public int getBaseIntelligence() {
 		return intelligence;
 	}
 
-	public void setIntelligence(int intelligence) {
+	public void setBaseIntelligence(int intelligence) {
 		this.intelligence = intelligence;
 	}
-
+	
 	public int getWisdom() {
+		return getBaseWisdom() + equipment.getApplyModifier(ItemApplies.APPLY_WIS);
+	}
+
+	public int getBaseWisdom() {
 		return wisdom;
 	}
 
-	public void setWisdom(int wisdom) {
+	public void setBaseWisdom(int wisdom) {
 		this.wisdom = wisdom;
 	}
-
+	
 	public int getCharisma() {
+		return getBaseCharisma() + equipment.getApplyModifier(ItemApplies.APPLY_CHA);
+	}
+
+	public int getBaseCharisma() {
 		return charisma;
 	}
 
-	public void setCharisma(int charisma) {
+	public void setBaseCharisma(int charisma) {
 		this.charisma = charisma;
 	}
 	

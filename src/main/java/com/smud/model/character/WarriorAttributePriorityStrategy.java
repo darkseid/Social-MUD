@@ -6,12 +6,12 @@ public class WarriorAttributePriorityStrategy implements AttributePriorityStrate
 
 	@Override
 	public void distributeAttributes(Player player, List<Integer> attributes) {
-		player.setStrength(attributes.remove(attributes.size() - 1));
+		player.setBaseStrength(attributes.remove(attributes.size() - 1));
 		player.setBaseDexterity(attributes.remove(attributes.size() - 1));
-		player.setConstitution(attributes.remove(attributes.size() - 1));
-		player.setWisdom(attributes.remove(attributes.size() - 1));
-		player.setIntelligence(attributes.remove(attributes.size() - 1));
-		player.setCharisma(attributes.remove(attributes.size() - 1));
+		player.setBaseConstitution(attributes.remove(attributes.size() - 1));
+		player.setBaseWisdom(attributes.remove(attributes.size() - 1));
+		player.setBaseIntelligence(attributes.remove(attributes.size() - 1));
+		player.setBaseCharisma(attributes.remove(attributes.size() - 1));
 	}
 
 
