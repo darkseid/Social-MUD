@@ -88,4 +88,9 @@ public class Item {
 		return ItemWearPosition.WIELD.equals(itemWearPosition);
 	}
 	
+	public boolean isHoldable() {
+		return ItemWearPosition.LIGHT.equals(itemWearPosition) ||
+		ItemWearPosition.HOLD.equals(itemWearPosition);
+	}
+	
 }

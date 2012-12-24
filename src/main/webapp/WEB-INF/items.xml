@@ -12,6 +12,12 @@
 		<property name="zone" ref="zone30"/>
 		<property name="itemWearPosition" value="WIELD" />
 	</bean>	
+	
+    <bean id="item3030"	class="com.smud.model.definition.ItemDefinition">
+		<property name="id" value="3030"/>
+		<property name="zone" ref="zone30"/>
+		<property name="itemWearPosition" value="LIGHT" />
+	</bean>	
     
 	<bean id="item3035"	class="com.smud.model.definition.ItemDefinition">
 		<property name="id" value="3035"/>

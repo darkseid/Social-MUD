@@ -14,9 +14,9 @@ import com.smud.model.item.Equipment;
 import com.smud.model.item.Inventory;
 import com.smud.model.item.Item;
 
-public class WieldCommand implements Command {
+public class HoldCommand implements Command {
 
-	private static final String COMMAND_NAME = "wield";
+	private static final String COMMAND_NAME = "hold";
 	
 	private static final int TARGET_ITEM_KEYWORD = 0;
 	
@@ -27,13 +27,13 @@ public class WieldCommand implements Command {
 	public CommandResponse execute(Player player, String parameters) {
 		CommandResponse commandResponse = new CommandResponse();
 		if (parameters == null || parameters.trim().isEmpty()) {
-			commandResponse.addResponse(new Response("Wield what?!?!", Color.WHITE));
+			commandResponse.addResponse(new Response("Hold what?!?!", Color.WHITE));
 		} else {
 			String inputKeyword = parameters.split(" ")[TARGET_ITEM_KEYWORD];
 			Inventory inventory = player.getInventory();
-			Item itemToWield = inventory.findItem(inputKeyword);
-			if (itemToWield != null) {
-				wieldItem(player, itemToWield, commandResponse);
+			Item itemToHold = inventory.findItem(inputKeyword);
+			if (itemToHold != null) {
+				holdItem(player, itemToHold, commandResponse);
 			} else {
 				sendItemNotFoundMessage(commandResponse, inputKeyword);
 			}
@@ -46,13 +46,13 @@ public class WieldCommand implements Command {
 		return COMMAND_NAME;
 	}
 
-	private void wieldItem(Player player, Item item, CommandResponse commandResponse) {
+	private void holdItem(Player player, Item item, CommandResponse commandResponse) {
 		Equipment equipment = player.getEquipment();
 		Inventory inventory = player.getInventory();
-		if (!item.isWieldable()) {
-			commandResponse.addResponse(new Response("You can't wield that!", Color.WHITE));
+		if (!item.isHoldable()) {
+			commandResponse.addResponse(new Response("You can't hold that!", Color.WHITE));
 		} else if (!equipment.hasSlotAvailable(item.getItemWearPosition())) {
-			commandResponse.addResponse(new Response("You are already wielding something else!", Color.WHITE));
+			commandResponse.addResponse(new Response("You are already holding something else!", Color.WHITE));
 		} else {
 			inventory.removeItem(item);
 			equipment.addItem(item.getItemWearPosition(), item);
@@ -66,8 +66,7 @@ public class WieldCommand implements Command {
 	}
 	
 	private void sendSuccessMessage(CommandResponse commandResponse, Item item) {
-		String itemNotFoundMessage = MessageFormat.format("You wield {0}.", textProperties.getProperty("item." + item.getCode() + ".name"));
+		String itemNotFoundMessage = MessageFormat.format("You hold {0}.", textProperties.getProperty("item." + item.getCode() + ".name"));
 		commandResponse.addResponse(new Response(itemNotFoundMessage, Color.WHITE));
 	}
-	
 }

@@ -22,4 +22,9 @@
 		<property name="itemDefinition" ref="item3024"/>
 		<property name="maxQuantity" value="1"/>
 	</bean>
+	
+	<bean id="createItemTorchAction" class="com.smud.model.action.CreateItemInRoomResetAction">
+		<property name="itemDefinition" ref="item3030"/>
+		<property name="maxQuantity" value="1"/>
+	</bean>
 </beans>
