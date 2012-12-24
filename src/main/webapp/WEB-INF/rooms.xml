@@ -44,6 +44,7 @@
 				<ref bean="createItemFountainAction"/>
 				<ref bean="createItemAxeAction"/>
 				<ref bean="createItemTorchAction"/>
+				<ref bean="createItemShieldAction"/>
 			</list>
 		</property>
 	</bean>

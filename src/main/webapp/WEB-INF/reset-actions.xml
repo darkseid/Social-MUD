@@ -27,4 +27,9 @@
 		<property name="itemDefinition" ref="item3030"/>
 		<property name="maxQuantity" value="1"/>
 	</bean>
+	
+	<bean id="createItemShieldAction" class="com.smud.model.action.CreateItemInRoomResetAction">
+		<property name="itemDefinition" ref="item3042"/>
+		<property name="maxQuantity" value="1"/>
+	</bean>
 </beans>

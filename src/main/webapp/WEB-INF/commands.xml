@@ -32,6 +32,7 @@
 	<bean id="getCommand" class="com.smud.model.command.item.GetCommand"/>
 	<bean id="holdCommand" class="com.smud.model.command.item.HoldCommand"/>
 	<bean id="junkCommand" class="com.smud.model.command.item.JunkCommand"/>
+	<bean id="wearCommand" class="com.smud.model.command.item.WearCommand"/>
 	<bean id="wieldCommand" class="com.smud.model.command.item.WieldCommand"/>
 	
 	<!-- Admin -->
@@ -66,6 +67,7 @@
 		<ref bean="shoutCommand"/>
 		<ref bean="tellCommand"/>
 		<ref bean="titleCommand"/>
+		<ref bean="wearCommand"/>
 		<ref bean="wieldCommand"/>
 	</util:list>
 	

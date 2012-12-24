@@ -22,6 +22,12 @@
 	<bean id="item3035"	class="com.smud.model.definition.ItemDefinition">
 		<property name="id" value="3035"/>
 		<property name="zone" ref="zone30"/>
+	</bean>
+	
+	<bean id="item3042"	class="com.smud.model.definition.ItemDefinition">
+		<property name="id" value="3042"/>
+		<property name="zone" ref="zone30"/>
+		<property name="itemWearPosition" value="SHIELD" />
 	</bean>	
 	
 </beans>

@@ -93,4 +93,8 @@ public class Item {
 		ItemWearPosition.HOLD.equals(itemWearPosition);
 	}
 	
+	public boolean isWearable() {
+		return ItemWearPosition.WEARABLE_POSITIONS.contains(itemWearPosition);
+	}
+	
 }
