@@ -50,6 +50,7 @@ public class CreateItemInRoomResetAction implements ResetAction<Room> {
 		item.setZone(itemDefinition.getZone());
 		item.setKeywords(createKeywords());
 		item.setItemWearPosition(itemDefinition.getItemWearPosition());
+		item.setItemApplies(itemDefinition.getItemApplies());
 		return item;
 	}
 	

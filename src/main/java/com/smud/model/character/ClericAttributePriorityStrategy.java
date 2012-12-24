@@ -9,7 +9,7 @@ public class ClericAttributePriorityStrategy implements AttributePriorityStrateg
 		player.setWisdom(attributes.remove(attributes.size() - 1));
 		player.setIntelligence(attributes.remove(attributes.size() - 1));
 		player.setStrength(attributes.remove(attributes.size() - 1));
-		player.setDexterity(attributes.remove(attributes.size() - 1));
+		player.setBaseDexterity(attributes.remove(attributes.size() - 1));
 		player.setConstitution(attributes.remove(attributes.size() - 1));
 		player.setCharisma(attributes.remove(attributes.size() - 1));
 	}

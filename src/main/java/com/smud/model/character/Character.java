@@ -4,6 +4,7 @@ import com.smud.model.Room;
 import com.smud.model.command.Response;
 import com.smud.model.item.Equipment;
 import com.smud.model.item.Inventory;
+import com.smud.model.item.ItemApplies;
 
 public abstract class Character {
 
@@ -65,10 +66,14 @@ public abstract class Character {
 	}
 
 	public int getDexterity() {
+		return getBaseDexterity() + equipment.getApplyModifier(ItemApplies.APPLY_DEX);
+	}
+	
+	public int getBaseDexterity() {
 		return dexterity;
 	}
 
-	public void setDexterity(int dexterity) {
+	public void setBaseDexterity(int dexterity) {
 		this.dexterity = dexterity;
 	}
 

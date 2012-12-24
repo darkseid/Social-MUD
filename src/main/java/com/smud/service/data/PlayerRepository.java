@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import com.smud.model.Room;
 import com.smud.model.User;
 import com.smud.model.Zone;
-import com.smud.model.character.PlayerClass;
 import com.smud.model.character.Player;
+import com.smud.model.character.PlayerClass;
 
 /**
  * @author rafael
@@ -82,7 +82,7 @@ public class PlayerRepository {
 		player.setLevel(Integer.parseInt(level));
 		
 		player.setStrength(Integer.parseInt(strength));
-		player.setDexterity(Integer.parseInt(dexteriry));
+		player.setBaseDexterity(Integer.parseInt(dexteriry));
 		player.setConstitution(Integer.parseInt(constitution));
 		player.setIntelligence(Integer.parseInt(intelligence));
 		player.setWisdom(Integer.parseInt(wisdom));
@@ -114,7 +114,7 @@ public class PlayerRepository {
 		playerOps.put("level", String.valueOf(player.getLevel()));
 		
 		playerOps.put("strength", String.valueOf(player.getStrength()));
-		playerOps.put("dexterity", String.valueOf(player.getDexterity()));
+		playerOps.put("dexterity", String.valueOf(player.getBaseDexterity()));
 		playerOps.put("constitution", String.valueOf(player.getConstitution()));
 		playerOps.put("intelligence", String.valueOf(player.getIntelligence()));
 		playerOps.put("wisdom", String.valueOf(player.getWisdom()));
@@ -142,7 +142,7 @@ public class PlayerRepository {
 		playerOps.put("level", String.valueOf(player.getLevel()));
 		
 		playerOps.put("strength", String.valueOf(player.getStrength()));
-		playerOps.put("dexterity", String.valueOf(player.getDexterity()));
+		playerOps.put("dexterity", String.valueOf(player.getBaseDexterity()));
 		playerOps.put("constitution", String.valueOf(player.getConstitution()));
 		playerOps.put("intelligence", String.valueOf(player.getIntelligence()));
 		playerOps.put("wisdom", String.valueOf(player.getWisdom()));

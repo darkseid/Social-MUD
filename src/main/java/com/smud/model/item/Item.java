@@ -1,5 +1,7 @@
 package com.smud.model.item;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -16,6 +18,7 @@ public class Item {
 	private Keywords keywords;
 	
 	private ItemWearPosition itemWearPosition;
+	private Map<ItemApplies, Integer> itemApplies;
 	
 	public int getCode() {
 		return code;
@@ -55,6 +58,14 @@ public class Item {
 	
 	public ItemWearPosition getItemWearPosition() {
 		return itemWearPosition;
+	}
+	
+	public Map<ItemApplies, Integer> getItemApplies() {
+		return itemApplies;
+	}
+	
+	public void setItemApplies(Map<ItemApplies, Integer> itemApplies) {
+		this.itemApplies = itemApplies;
 	}
 	
 	@Override

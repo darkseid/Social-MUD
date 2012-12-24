@@ -28,6 +28,11 @@
 		<property name="id" value="3042"/>
 		<property name="zone" ref="zone30"/>
 		<property name="itemWearPosition" value="SHIELD" />
+		<property name="itemApplies">
+			<map>
+				<entry key="APPLY_DEX" value="1"/>
+			</map>
+		</property>
 	</bean>	
 	
 </beans>

@@ -31,4 +31,15 @@ public class Equipment {
 			}
 		}
 	}
+
+	public int getApplyModifier(ItemApplies itemApplies) {
+		int modifier = 0;
+		for (ItemWearSlot itemWearSlot : ItemWearSlot.values()) {
+			Item item = getItem(itemWearSlot);
+			if (item != null) {
+				modifier += item.getItemApplies().get(itemApplies);
+			}
+		}
+		return modifier;
+	}
 }
