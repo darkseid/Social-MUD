@@ -35,6 +35,9 @@
 	<bean id="wearCommand" class="com.smud.model.command.item.WearCommand"/>
 	<bean id="wieldCommand" class="com.smud.model.command.item.WieldCommand"/>
 	
+	<!-- Fight -->
+	<bean id="killCommand" class="com.smud.model.command.fight.KillCommand"/>
+	
 	<!-- Admin -->
 	<bean id="resetCommand" class="com.smud.model.command.admin.ResetCommand"/>
 	
@@ -60,6 +63,7 @@
 		<ref bean="holdCommand"/>
 		<ref bean="inventoryCommand"/>
 		<ref bean="junkCommand"/>
+		<ref bean="killCommand"/>
 		<ref bean="lookCommand"/>
 		<ref bean="resetCommand"/>
 		<ref bean="sayCommand"/>

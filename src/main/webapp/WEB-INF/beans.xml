@@ -44,5 +44,20 @@
 	<bean id="random" class="java.util.Random"/>
 	
 	<bean id="dice" class="com.smud.model.Dice"/>
+	
+	<bean name="tickerJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.smud.jobs.TickerJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="fightService" value-ref="fightService" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="tickerJobTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	    <property name="jobDetail" ref="tickerJob" />
+	    <property name="startDelay" value="0" />
+	    <property name="repeatInterval" value="1000" />
+	</bean>
 
 </beans>

@@ -160,6 +160,10 @@ public abstract class Character {
 	public void setHitPoints(int hitPoints) {
 		this.hitPoints = hitPoints;
 	}
+	
+	public void decrementHitPoints(int amount) {
+		this.hitPoints -= amount;
+	}
 
 	public int getManaPoints() {
 		return manaPoints;
@@ -205,6 +209,12 @@ public abstract class Character {
 		return equipment;
 	}
 	
+	public boolean isNameMatch(String name) {
+		return this.name.toUpperCase().startsWith(name.toUpperCase());
+	}
+	
+	public abstract boolean isPlayer();
+	
 	public abstract void addResponse(Response response);
 
 	public abstract String getDescriptionToRoom();
@@ -212,4 +222,5 @@ public abstract class Character {
 	protected abstract void enterCurrentRoom();
 	
 	protected abstract void exitCurrentRoom();
+
 }

@@ -8,6 +8,7 @@ import java.util.Properties;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.smud.model.Color;
 import com.smud.model.Input;
@@ -17,6 +18,7 @@ import com.smud.model.command.CommandResponse;
 import com.smud.model.command.Response;
 import com.smud.service.data.PlayerRepository;
 
+@Service
 public class DefaultCommandsService implements CommandsService {
 
 	private List<Command> commands = new ArrayList<Command>();

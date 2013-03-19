@@ -1,9 +1,12 @@
 package com.smud.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.smud.model.character.Character;
 import com.smud.model.character.Monster;
@@ -99,12 +102,30 @@ public class Room implements Resetable {
 		}
 	}
 
-	public void sendToOtherCharacters(Response response, Character character) {
+	public void sendToOtherCharacters(Response response, Character... characters) {
+		sendToOtherCharacters(response, new HashSet<Character>(Arrays.asList(characters)));
+	}
+	
+	public void sendToOtherCharacters(Response response, Set<Character> characters) {
 		for (Character characterInRoom : players) {
-			if (!characterInRoom.equals(character)){
+			if (!characters.contains(characterInRoom)){
 				characterInRoom.addResponse(response);
 			}
 		}
+	}
+	
+	public Character getCharacter(String name, Character actor) {
+		for (Player player : players) {
+			if (player.isNameMatch(name)) {
+				return player;
+			}
+		}
+		for (Monster monster : monsters) {
+			if (monster.isNameMatch(name)) {
+				return monster;
+			}
+		}
+		return null;
 	}
 	
 	public void reset() {

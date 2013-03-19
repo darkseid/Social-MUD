@@ -34,6 +34,11 @@ public class Player extends Character {
 		this.playerClass = characterClass;
 	}
 	
+	@Override
+	public boolean isPlayer() {
+		return true;
+	}
+	
 	public void addResponse(Response response) {
 		synchronized (this) {
 			if (responses == null) {

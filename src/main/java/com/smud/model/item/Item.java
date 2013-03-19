@@ -1,5 +1,6 @@
 package com.smud.model.item;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -18,7 +19,7 @@ public class Item {
 	private Keywords keywords;
 	
 	private ItemWearPosition itemWearPosition;
-	private Map<ItemApplies, Integer> itemApplies;
+	private Map<ItemApplies, Integer> itemApplies = new HashMap<ItemApplies, Integer>();
 	
 	public int getCode() {
 		return code;
@@ -62,6 +63,11 @@ public class Item {
 	
 	public Map<ItemApplies, Integer> getItemApplies() {
 		return itemApplies;
+	}
+	
+	public int getItemApplyValue(ItemApplies applies) {
+		Integer applyValue = itemApplies.get(applies);
+		return applyValue != null ? applyValue : 0;
 	}
 	
 	public void setItemApplies(Map<ItemApplies, Integer> itemApplies) {

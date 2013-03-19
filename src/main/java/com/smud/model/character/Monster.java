@@ -36,6 +36,11 @@ public class Monster extends Character {
 	protected void exitCurrentRoom() {
 		getCurrentRoom().removeMonster(this);
 	}
+
+	@Override
+	public boolean isPlayer() {
+		return false;
+	}
 	
 	@Override
 	public boolean equals(Object obj) {

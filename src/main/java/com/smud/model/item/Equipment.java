@@ -37,7 +37,8 @@ public class Equipment {
 		for (ItemWearSlot itemWearSlot : ItemWearSlot.values()) {
 			Item item = getItem(itemWearSlot);
 			if (item != null) {
-				modifier += item.getItemApplies().get(itemApplies);
+				int apply_value = item.getItemApplyValue(itemApplies);
+				modifier += apply_value;
 			}
 		}
 		return modifier;

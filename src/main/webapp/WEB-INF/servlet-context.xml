@@ -53,6 +53,7 @@
     	<property name="triggers">
 	        <list>
 	            <ref bean="resetZone30Trigger" />
+	            <ref bean="tickerJobTrigger" />
 	        </list>
 	    </property>
 	</bean>
